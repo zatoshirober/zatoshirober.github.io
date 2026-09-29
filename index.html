@@ -15,6 +15,10 @@
 
 <style>
 
+    /* =========================
+       RESET
+    ========================= */
+
     * {
         margin: 0;
         padding: 0;
@@ -42,15 +46,23 @@
         top: 0;
         left: 0;
         width: 100%;
+
         padding: 20px 8%;
+
         display: flex;
         justify-content: space-between;
         align-items: center;
+
         background: rgba(42, 42, 42, 0.90);
+
         backdrop-filter: blur(10px);
+
         z-index: 1000;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.08);
     }
+
 
     .logo img {
         height: 45px;
@@ -58,29 +70,44 @@
         display: block;
     }
 
+
     nav {
         display: flex;
         gap: 30px;
     }
 
+
     nav a {
         color: #49DD4B;
+
         text-decoration: none;
+
         font-size: 0.95rem;
+
         transition: 0.3s;
+
         position: relative;
     }
 
+
     nav a::after {
         content: "";
+
         position: absolute;
+
         left: 0;
+
         bottom: -6px;
+
         width: 0;
+
         height: 2px;
+
         background: #49DD4B;
+
         transition: width 0.3s ease;
     }
+
 
     nav a:hover::after {
         width: 100%;
@@ -92,34 +119,50 @@
     ========================= */
 
     .hero {
-        min-height: 100vh;
-        position: relative;
-        overflow: hidden;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding-top: 110px;
+        padding-bottom: 70px;
 
         text-align: center;
-
-        padding: 120px 20px 60px;
     }
 
-    .hero-video {
-        position: absolute;
 
-        top: 0;
-        left: 0;
+    /* =========================
+       VIDEO BANNER
+    ========================= */
 
+    .hero-video-container {
         width: 100%;
+
+        height: 420px;
+
+        position: relative;
+
+        overflow: hidden;
+
+        background: #111;
+
+        border-top:
+            1px solid rgba(255,255,255,0.08);
+
+        border-bottom:
+            1px solid rgba(255,255,255,0.08);
+    }
+
+
+    .hero-video {
+        width: 100%;
+
         height: 100%;
 
         object-fit: cover;
 
-        z-index: 0;
+        display: block;
     }
 
-    .hero-overlay {
+
+    /* OSCURECER UN POCO EL VIDEO */
+
+    .hero-video-overlay {
         position: absolute;
 
         top: 0;
@@ -128,22 +171,35 @@
         width: 100%;
         height: 100%;
 
-        background: rgba(0, 0, 0, 0.55);
+        background:
+            linear-gradient(
+                to bottom,
+                rgba(0,0,0,0.15),
+                rgba(0,0,0,0.45)
+            );
 
-        z-index: 1;
+        pointer-events: none;
     }
+
+
+    /* =========================
+       HERO CONTENT
+    ========================= */
 
     .hero-content {
-        position: relative;
-
-        z-index: 2;
-
         max-width: 900px;
+
+        margin: 45px auto 0;
+
+        padding: 0 20px;
     }
+
 
     .hero p.small-title {
         font-size: 0.9rem;
+
         letter-spacing: 4px;
+
         text-transform: uppercase;
 
         color: #49DD4B;
@@ -153,16 +209,20 @@
         margin-bottom: 20px;
     }
 
+
     .hero h1 {
-        font-size: clamp(3rem, 8vw, 7rem);
+        font-size:
+            clamp(3rem, 8vw, 7rem);
 
         line-height: 1;
 
         margin-bottom: 25px;
     }
 
+
     .hero h2 {
-        font-size: clamp(1.2rem, 3vw, 2rem);
+        font-size:
+            clamp(1.2rem, 3vw, 2rem);
 
         font-weight: normal;
 
@@ -171,12 +231,13 @@
         margin-bottom: 30px;
     }
 
+
     .hero-description {
         max-width: 650px;
 
         margin: 0 auto 40px;
 
-        opacity: 0.75;
+        opacity: 0.65;
     }
 
 
@@ -189,7 +250,8 @@
 
         padding: 14px 28px;
 
-        border: 1px solid #49DD4B;
+        border:
+            1px solid #49DD4B;
 
         color: #49DD4B;
 
@@ -201,6 +263,7 @@
 
         letter-spacing: 1px;
     }
+
 
     .button:hover {
         background: #49DD4B;
@@ -219,6 +282,7 @@
         padding: 100px 8%;
     }
 
+
     .section-title {
         font-size: 2.5rem;
 
@@ -226,6 +290,7 @@
 
         position: relative;
     }
+
 
     .section-title::after {
         content: "";
@@ -255,8 +320,10 @@
         gap: 30px;
     }
 
+
     .project-card {
-        border: 1px solid rgba(255,255,255,0.1);
+        border:
+            1px solid rgba(255,255,255,0.1);
 
         padding: 30px;
 
@@ -265,619 +332,6 @@
         transition: 0.3s;
     }
 
-    .project-image {
-        width: 100%;
 
-        aspect-ratio: 16 / 9;
+    .proj
 
-        object-fit: cover;
-
-        display: block;
-
-        margin-bottom: 25px;
-
-        border-radius: 6px;
-
-        transition: transform 0.4s ease;
-    }
-
-    .project-card:hover {
-        transform: translateY(-5px);
-
-        border-color:
-            rgba(255,255,255,0.35);
-    }
-
-    .project-card:hover .project-image {
-        transform: scale(1.03);
-    }
-
-    .featured-project {
-        border-color:
-            rgba(73, 221, 75, 0.35);
-    }
-
-    .project-card .project-number {
-        opacity: 0.4;
-
-        font-size: 0.85rem;
-
-        margin-bottom: 20px;
-    }
-
-    .project-card h3 {
-        font-size: 1.5rem;
-
-        margin-bottom: 15px;
-    }
-
-    .project-card p {
-        opacity: 0.6;
-
-        margin-bottom: 25px;
-    }
-
-    .project-tags {
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 8px;
-
-        margin-bottom: 25px;
-    }
-
-    .project-tags span {
-        border:
-            1px solid rgba(73, 221, 75, 0.35);
-
-        color: #49DD4B;
-
-        padding: 5px 10px;
-
-        font-size: 0.75rem;
-    }
-
-
-    /* =========================
-       ABOUT
-    ========================= */
-
-    .about {
-        max-width: 1000px;
-
-        margin: 0 auto;
-
-        display: grid;
-
-        grid-template-columns:
-            1.5fr 1fr;
-
-        gap: 60px;
-
-        align-items: start;
-    }
-
-    .about p {
-        font-size: 1.1rem;
-
-        opacity: 0.7;
-
-        margin-bottom: 20px;
-    }
-
-    .skills {
-        display: flex;
-
-        flex-wrap: wrap;
-
-        gap: 12px;
-
-        margin-top: 30px;
-    }
-
-    .skill {
-        border:
-            1px solid rgba(255,255,255,0.2);
-
-        padding: 8px 15px;
-
-        font-size: 0.85rem;
-    }
-
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-        text-align: center;
-    }
-
-    .contact p {
-        opacity: 0.6;
-
-        margin-bottom: 30px;
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================= */
-
-    footer {
-        padding: 40px 8%;
-
-        text-align: center;
-
-        border-top:
-            1px solid rgba(255,255,255,0.08);
-
-        opacity: 0.5;
-
-        font-size: 0.85rem;
-    }
-
-
-    /* =========================
-       MOBILE
-    ========================= */
-
-    @media (max-width: 700px) {
-
-        header {
-            padding: 18px 5%;
-        }
-
-        nav {
-            gap: 15px;
-        }
-
-        nav a {
-            font-size: 0.8rem;
-        }
-
-        section {
-            padding: 80px 5%;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-        }
-
-        .about {
-            grid-template-columns: 1fr;
-
-            gap: 40px;
-        }
-
-    }
-
-</style>
-```
-
-</head>
-
-<body>
-
-```
-<!-- =========================
-     NAVIGATION
-========================= -->
-
-<header>
-
-    <div class="logo">
-
-        <img src="logo.png" alt="Zatoshi Rober">
-
-    </div>
-
-
-    <nav>
-
-        <a href="#home">Home</a>
-
-        <a href="#projects">Projects</a>
-
-        <a href="#about">About</a>
-
-        <a href="#contact">Contact</a>
-
-    </nav>
-
-</header>
-
-
-
-<!-- =========================
-     MAIN
-========================= -->
-
-<main>
-
-
-    <!-- =========================
-         HERO
-    ========================= -->
-
-    <section class="hero" id="home">
-
-
-        <video
-            class="hero-video"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-        >
-
-            <source
-                src="Portada-Video.webm"
-                type="video/webm"
-            >
-
-        </video>
-
-
-        <div class="hero-overlay"></div>
-
-
-        <div class="hero-content">
-
-
-            <p class="small-title">
-
-                Indie Game Developer
-
-            </p>
-
-
-            <h1>
-
-                Zatoshi Rober
-
-            </h1>
-
-
-            <h2>
-
-                Creating worlds with Unity.
-
-            </h2>
-
-
-            <p class="hero-description">
-
-                I’m an indie game developer at the beginning
-                of my journey, creating games, worlds and
-                interactive experiences through programming,
-                experimentation and game design.
-
-            </p>
-
-
-            <a
-                href="#projects"
-                class="button"
-            >
-
-                VIEW MY PROJECTS
-
-            </a>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         PROJECTS
-    ========================= -->
-
-    <section id="projects">
-
-
-        <h2 class="section-title">
-
-            Projects
-
-        </h2>
-
-
-        <div class="projects">
-
-
-            <!-- PROJECT 01 -->
-
-            <article
-                class="project-card featured-project"
-            >
-
-
-                <div class="project-number">
-
-                    01
-
-                </div>
-
-
-                <img
-                    src="portada1.png"
-                    alt="Robert Was Alone"
-                    class="project-image"
-                >
-
-
-                <h3>
-
-                    Robert Was Alone
-
-                </h3>
-
-
-                <p>
-
-                    A 2D puzzle-platformer created with Unity,
-                    inspired by the idea of programs discovering
-                    their purpose in a mysterious digital world.
-
-                </p>
-
-
-                <div class="project-tags">
-
-                    <span>Unity</span>
-
-                    <span>C#</span>
-
-                    <span>2D</span>
-
-                    <span>Puzzle Platformer</span>
-
-                </div>
-
-
-                <a
-                    href="https://zatoshi-rober.itch.io/rober-was-alone"
-                    class="button"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-
-                    VIEW GAME
-
-                </a>
-
-
-            </article>
-
-
-
-            <!-- PROJECT 02 -->
-
-            <article class="project-card">
-
-
-                <div class="project-number">
-
-                    02
-
-                </div>
-
-
-                <h3>
-
-                    Upcoming Project
-
-                </h3>
-
-
-                <p>
-
-                    A new interactive experience currently
-                    in development.
-
-                </p>
-
-
-            </article>
-
-
-
-            <!-- PROJECT 03 -->
-
-            <article class="project-card">
-
-
-                <div class="project-number">
-
-                    03
-
-                </div>
-
-
-                <h3>
-
-                    Experiments
-
-                </h3>
-
-
-                <p>
-
-                    Gameplay experiments, prototypes and
-                    ideas created while learning game development.
-
-                </p>
-
-
-            </article>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         ABOUT
-    ========================= -->
-
-    <section id="about">
-
-
-        <h2 class="section-title">
-
-            About Me
-
-        </h2>
-
-
-        <div class="about">
-
-
-            <div class="about-text">
-
-
-                <p>
-
-                    I’m an indie game developer focused on
-                    creating interactive experiences with
-                    Unity and C#.
-
-                </p>
-
-
-                <p>
-
-                    I enjoy designing gameplay systems,
-                    experimenting with mechanics and building
-                    worlds that combine gameplay, exploration
-                    and storytelling.
-
-                </p>
-
-
-                <p>
-
-                    Robert Was Alone is the beginning of my
-                    journey as a game developer, and this
-                    portfolio is where I share the projects,
-                    experiments and ideas I bring to life.
-
-                </p>
-
-
-            </div>
-
-
-            <div class="skills">
-
-
-                <span class="skill">
-
-                    Unity
-
-                </span>
-
-
-                <span class="skill">
-
-                    C#
-
-                </span>
-
-
-                <span class="skill">
-
-                    Game Design
-
-                </span>
-
-
-                <span class="skill">
-
-                    Gameplay Programming
-
-                </span>
-
-
-                <span class="skill">
-
-                    World Building
-
-                </span>
-
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =========================
-         CONTACT
-    ========================= -->
-
-    <section
-        id="contact"
-        class="contact"
-    >
-
-
-        <h2 class="section-title">
-
-            Contact
-
-        </h2>
-
-
-        <p>
-
-            Interested in my projects or want to follow
-            my journey?
-
-        </p>
-
-
-        <a
-            href="https://zatoshi-rober.itch.io/rober-was-alone"
-            class="button"
-            target="_blank"
-            rel="noopener noreferrer"
-        >
-
-            VIEW GAME
-
-        </a>
-
-
-    </section>
-
-
-</main>
-
-
-
-<!-- =========================
-     FOOTER
-========================= -->
-
-<footer>
-
-    © 2026 Zatoshi Rober — Indie Game Developer
-
-</footer>
-```
-
-</body>
-
-</html>
