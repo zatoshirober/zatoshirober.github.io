@@ -1,314 +1,187 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Zatoshi Rober | Indie Game Developer</title>
+    <title>Zatoshi Rober | Indie Game Developer</title>
 
-<meta name="description" content="Zatoshi Rober - Indie Game Developer creating games, worlds and interactive experiences with Unity.">
+    <meta name="description" content="Zatoshi Rober - Indie Game Developer creating games, worlds and interactive experiences with Unity.">
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
+    <style>
 
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: #2A2A2A;
-    color: #FFFFFF;
-    line-height: 1.6;
-}
-
-    /* NAVBAR */
-
-    header {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        padding: 20px 8%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: rgba(11, 11, 15, 0.85);
-        backdrop-filter: blur(10px);
-        z-index: 1000;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-    }
-
-   .logo img {
-    height: 45px;
-    width: auto;
-    display: block;
-}
-
-    nav {
-        display: flex;
-        gap: 30px;
-    }
-
-    nav a {
-    color: #49DD4B;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: 0.3s;
-}
-
-    nav a:hover {
-        opacity: 0.6;
-    }
-
-    /* HERO */
-
-    .hero {
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        padding: 120px 20px 60px;
-    }
-
-    .hero-content {
-        max-width: 900px;
-    }
-
-    .hero p.small-title {
-        font-size: 0.9rem;
-        letter-spacing: 4px;
-        text-transform: uppercase;
-        opacity: 0.6;
-        margin-bottom: 20px;
-    }
-
-    .hero h1 {
-        font-size: clamp(3rem, 8vw, 7rem);
-        line-height: 1;
-        margin-bottom: 25px;
-    }
-
-    .hero h2 {
-        font-size: clamp(1.2rem, 3vw, 2rem);
-        font-weight: normal;
-        opacity: 0.75;
-        margin-bottom: 30px;
-    }
-
-    .hero-description {
-        max-width: 650px;
-        margin: 0 auto 40px;
-        opacity: 0.65;
-    }
-
-   .button {
-    display: inline-block;
-    padding: 14px 28px;
-    border: 1px solid #49DD4B;
-    color: #49DD4B;
-    text-decoration: none;
-    transition: 0.3s;
-}
-
-.button:hover {
-    background: #49DD4B;
-    color: #2A2A2A;
-}
-
-    .button:hover {
-        background: #ffffff;
-        color: #0b0b0f;
-    }
-
-    /* SECTIONS */
-
-    section {
-        padding: 100px 8%;
-    }
-
-    .section-title {
-        font-size: 2.5rem;
-        margin-bottom: 50px;
-    }
-
-    /* PROJECTS */
-
-    .projects {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 30px;
-    }
-
-   .project-card {
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 30px;
-    background: #2A2A2A;
-    transition: 0.3s;
-}
-
-    .project-card:hover {
-        transform: translateY(-5px);
-        border-color: rgba(255,255,255,0.35);
-    }
-
-    .project-card .project-number {
-        opacity: 0.4;
-        font-size: 0.85rem;
-        margin-bottom: 20px;
-    }
-
-    .project-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 15px;
-    }
-
-    .project-card p {
-        opacity: 0.6;
-        margin-bottom: 25px;
-    }
-
-    /* ABOUT */
-
-    .about {
-        max-width: 800px;
-    }
-
-    .about p {
-        font-size: 1.1rem;
-        opacity: 0.7;
-        margin-bottom: 20px;
-    }
-
-    .skills {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 30px;
-    }
-
-    .skill {
-        border: 1px solid rgba(255,255,255,0.2);
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
-
-    /* CONTACT */
-
-    .contact {
-        text-align: center;
-    }
-
-    .contact p {
-        opacity: 0.6;
-        margin-bottom: 30px;
-    }
-
-    /* FOOTER */
-
-    footer {
-        padding: 40px 8%;
-        text-align: center;
-        border-top: 1px solid rgba(255,255,255,0.08);
-        opacity: 0.5;
-        font-size: 0.85rem;
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-        header {
-            padding: 18px 5%;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #2A2A2A;
+            color: #FFFFFF;
+            line-height: 1.6;
+        }
+
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 8%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            background: rgba(42, 42, 42, 0.90);
+            backdrop-filter: blur(10px);
+
+            z-index: 1000;
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+
+        /* LOGO */
+
+        .logo img {
+            height: 45px;
+            width: auto;
+            display: block;
+        }
+
+
+        /* NAVIGATION */
+
         nav {
-            gap: 15px;
+            display: flex;
+            gap: 30px;
         }
 
         nav a {
-            font-size: 0.8rem;
+            color: #49DD4B;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.3s;
         }
 
-        section {
-            padding: 80px 5%;
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            text-align: center;
+
+            padding: 120px 20px 60px;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .hero p.small-title {
+            font-size: 0.9rem;
+
+            letter-spacing: 4px;
+
+            text-transform: uppercase;
+
+            opacity: 0.6;
+
+            margin-bottom: 20px;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: clamp(3rem, 8vw, 7rem);
+
+            line-height: 1;
+
+            margin-bottom: 25px;
         }
-    }
-</style>
-```
 
-</head>
+        .hero h2 {
+            font-size: clamp(1.2rem, 3vw, 2rem);
 
-<body>
+            font-weight: normal;
 
-```
-<!-- NAVIGATION -->
+            opacity: 0.75;
 
-<header>
+            margin-bottom: 30px;
+        }
 
-   <div class="logo">
-    <img src="logo.png" alt="Zatoshi Rober">
-</div>
+        .hero-description {
+            max-width: 650px;
 
-    <nav>
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-    </nav>
+            margin: 0 auto 40px;
 
-</header>
+            opacity: 0.65;
+        }
 
 
-<!-- HERO -->
+        /* =========================
+           BUTTONS
+        ========================= */
 
-<main>
+        .button {
+            display: inline-block;
 
-    <section class="hero" id="home">
+            padding: 14px 28px;
 
-        <div class="hero-content">
+            border: 1px solid #49DD4B;
 
-            <p class="small-title">
-                Indie Game Developer
-            </p>
+            color: #49DD4B;
 
-            <h1>
-                Zatoshi Rober
-            </h1>
+            text-decoration: none;
 
-            <h2>
-                Creating worlds with Unity.
-            </h2>
+            transition: 0.3s;
+        }
 
-            <p class="hero-description">
-                I’m an indie game developer at the beginning of my journey,
-                creating games, worlds and interactive experiences through
-                programming, experimentation and game design.
-            </p>
+        .button:hover {
+            background: #49DD4B;
 
-            <a href="#projects" class="button">
-                VIEW MY PROJECTS
-            </a>
-
-        </div>
-
-    </section>
+            color: #2A2A2A;
+        }
 
 
-    <!-- PROJECTS -->
+        /* =========================
+           SECTIONS
+        ========================= */
 
-    <section id="projects">
+        section {
+            padding: 100px 8%;
+        }
 
-        <h2
+        .section-title {
+            font-size: 2.5rem;
+
+            margin-bottom: 50px;
+        }
+
+
+        /* =========================
+           PROJE
 ```
