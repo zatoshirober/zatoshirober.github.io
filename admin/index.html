@@ -1,4 +1,5 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,22 +14,207 @@
 
     <title>Zatoshi Rober | Admin</title>
 
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #2A2A2A;
+
+            color: #FFFFFF;
+
+            padding: 40px;
+        }
+
+
+        h1 {
+            margin-bottom: 10px;
+        }
+
+
+        .subtitle {
+            opacity: 0.6;
+
+            margin-bottom: 40px;
+        }
+
+
+        .projects {
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
+
+            gap: 25px;
+        }
+
+
+        .project-card {
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+
+            padding: 25px;
+
+            background: #222222;
+        }
+
+
+        .project-number {
+
+            color: #49DD4B;
+
+            font-size: 0.85rem;
+
+            margin-bottom: 10px;
+        }
+
+
+        .project-card h2 {
+
+            margin-bottom: 15px;
+        }
+
+
+        .project-card p {
+
+            opacity: 0.6;
+
+            margin-bottom: 20px;
+        }
+
+
+        .tags {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .tag {
+
+            border:
+                1px solid
+                rgba(73,221,75,0.4);
+
+            color: #49DD4B;
+
+            padding: 5px 9px;
+
+            font-size: 0.75rem;
+        }
+
+
+    </style>
+
 </head>
 
 
 <body>
 
+
     <h1>
         Zatoshi Rober
     </h1>
 
-    <h2>
-        Admin Panel
-    </h2>
 
-    <p>
-        Admin panel is working.
+    <p class="subtitle">
+        Admin Panel — Projects
     </p>
+
+
+    <div
+        class="projects"
+        id="projects-container"
+    >
+    </div>
+
+
+
+    <!-- PROJECT DATA -->
+
+    <script src="../projects.js"></script>
+
+
+
+    <!-- PROJECT GENERATOR -->
+
+    <script>
+
+        const container =
+            document.getElementById(
+                "projects-container"
+            );
+
+
+        projects.forEach(project => {
+
+
+            const card =
+                document.createElement(
+                    "div"
+                );
+
+
+            card.className =
+                "project-card";
+
+
+            card.innerHTML = `
+
+                <div
+                    class="project-number"
+                >
+                    PROJECT ${project.number}
+                </div>
+
+
+                <h2>
+                    ${project.title}
+                </h2>
+
+
+                <p>
+                    ${project.description}
+                </p>
+
+
+                <div class="tags">
+
+                    ${project.tags.map(tag => `
+
+                        <span class="tag">
+                            ${tag}
+                        </span>
+
+                    `).join("")}
+
+                </div>
+
+            `;
+
+
+            container.appendChild(card);
+
+        });
+
+    </script>
+
 
 </body>
 
