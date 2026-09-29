@@ -1,5 +1,4 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,7 +46,12 @@
         }
 
 
+        /* =========================
+           PROJECTS
+        ========================= */
+
         .projects {
+
             display: grid;
 
             grid-template-columns:
@@ -96,6 +100,10 @@
         }
 
 
+        /* =========================
+           TAGS
+        ========================= */
+
         .tags {
 
             display: flex;
@@ -103,6 +111,8 @@
             flex-wrap: wrap;
 
             gap: 8px;
+
+            margin-bottom: 25px;
         }
 
 
@@ -120,6 +130,183 @@
         }
 
 
+        /* =========================
+           BUTTON
+        ========================= */
+
+        .edit-button {
+
+            display: inline-block;
+
+            padding: 10px 18px;
+
+            border:
+                1px solid
+                #49DD4B;
+
+            background: transparent;
+
+            color: #49DD4B;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+
+        .edit-button:hover {
+
+            background: #49DD4B;
+
+            color: #2A2A2A;
+        }
+
+
+        /* =========================
+           EDITOR
+        ========================= */
+
+        .editor {
+
+            display: none;
+
+            margin-top: 40px;
+
+            padding: 30px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            background: #222222;
+        }
+
+
+        .editor.active {
+
+            display: block;
+        }
+
+
+        .editor h2 {
+
+            margin-bottom: 30px;
+        }
+
+
+        .field {
+
+            margin-bottom: 20px;
+        }
+
+
+        .field label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #49DD4B;
+
+            font-size: 0.9rem;
+        }
+
+
+        .field input,
+        .field textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            background: #1A1A1A;
+
+            color: #FFFFFF;
+
+            font-family: inherit;
+        }
+
+
+        .field textarea {
+
+            min-height: 120px;
+
+            resize: vertical;
+        }
+
+
+        .editor-actions {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-top: 30px;
+        }
+
+
+        .save-button,
+        .cancel-button {
+
+            padding: 12px 20px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .save-button {
+
+            border:
+                1px solid
+                #49DD4B;
+
+            background: #49DD4B;
+
+            color: #2A2A2A;
+        }
+
+
+        .cancel-button {
+
+            border:
+                1px solid
+                rgba(255,255,255,0.3);
+
+            background: transparent;
+
+            color: #FFFFFF;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            body {
+
+                padding: 25px 15px;
+
+            }
+
+
+            .editor {
+
+                padding: 20px;
+
+            }
+
+        }
+
     </style>
 
 </head>
@@ -127,6 +314,10 @@
 
 <body>
 
+
+    <!-- =========================
+         HEADER
+    ========================= -->
 
     <h1>
         Zatoshi Rober
@@ -138,6 +329,11 @@
     </p>
 
 
+
+    <!-- =========================
+         PROJECTS
+    ========================= -->
+
     <div
         class="projects"
         id="projects-container"
@@ -146,72 +342,459 @@
 
 
 
-    <!-- PROJECT DATA -->
+    <!-- =========================
+         EDITOR
+    ========================= -->
+
+    <div
+        class="editor"
+        id="editor"
+    >
+
+        <h2>
+            Edit Project
+        </h2>
+
+
+        <div class="field">
+
+            <label for="title">
+                Project Title
+            </label>
+
+            <input
+                type="text"
+                id="title"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="image">
+                Image
+            </label>
+
+            <input
+                type="text"
+                id="image"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea
+                id="description"
+            ></textarea>
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="tags">
+                Tags
+            </label>
+
+            <input
+                type="text"
+                id="tags"
+                placeholder="Unity, C#, 2D"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="link">
+                Project Link
+            </label>
+
+            <input
+                type="text"
+                id="link"
+            >
+
+        </div>
+
+
+        <div class="field">
+
+            <label for="buttonText">
+                Button Text
+            </label>
+
+            <input
+                type="text"
+                id="buttonText"
+            >
+
+        </div>
+
+
+        <div class="editor-actions">
+
+            <button
+                class="save-button"
+                id="save-button"
+            >
+                SAVE
+            </button>
+
+
+            <button
+                class="cancel-button"
+                id="cancel-button"
+            >
+                CANCEL
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         PROJECT DATA
+    ========================= -->
 
     <script src="../projects.js"></script>
 
 
 
-    <!-- PROJECT GENERATOR -->
+    <!-- =========================
+         ADMIN SYSTEM
+    ========================= -->
 
     <script>
 
-        const container =
+        const projectsContainer =
             document.getElementById(
                 "projects-container"
             );
 
 
-        projects.forEach(project => {
+        const editor =
+            document.getElementById(
+                "editor"
+            );
 
 
-            const card =
-                document.createElement(
-                    "div"
+        const titleInput =
+            document.getElementById(
+                "title"
+            );
+
+
+        const imageInput =
+            document.getElementById(
+                "image"
+            );
+
+
+        const descriptionInput =
+            document.getElementById(
+                "description"
+            );
+
+
+        const tagsInput =
+            document.getElementById(
+                "tags"
+            );
+
+
+        const linkInput =
+            document.getElementById(
+                "link"
+            );
+
+
+        const buttonTextInput =
+            document.getElementById(
+                "buttonText"
+            );
+
+
+        const saveButton =
+            document.getElementById(
+                "save-button"
+            );
+
+
+        const cancelButton =
+            document.getElementById(
+                "cancel-button"
+            );
+
+
+        let selectedProject = null;
+
+
+
+        /* =========================
+           CREATE PROJECT CARDS
+        ========================= */
+
+        function renderProjects() {
+
+            projectsContainer.innerHTML = "";
+
+
+            projects.forEach(project => {
+
+                const card =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                card.className =
+                    "project-card";
+
+
+                card.innerHTML = `
+
+                    <div
+                        class="project-number"
+                    >
+                        PROJECT ${project.number}
+                    </div>
+
+
+                    <h2>
+                        ${project.title}
+                    </h2>
+
+
+                    <p>
+                        ${project.description}
+                    </p>
+
+
+                    <div class="tags">
+
+                        ${project.tags.map(tag => `
+
+                            <span class="tag">
+                                ${tag}
+                            </span>
+
+                        `).join("")}
+
+                    </div>
+
+
+                    <button
+                        class="edit-button"
+                        data-id="${project.id}"
+                    >
+                        EDIT
+                    </button>
+
+                `;
+
+
+                projectsContainer.appendChild(
+                    card
+                );
+
+            });
+
+
+            addEditEvents();
+
+        }
+
+
+
+        /* =========================
+           EDIT BUTTONS
+        ========================= */
+
+        function addEditEvents() {
+
+            const buttons =
+                document.querySelectorAll(
+                    ".edit-button"
                 );
 
 
-            card.className =
-                "project-card";
+            buttons.forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const id =
+                            Number(
+                                button.dataset.id
+                            );
 
 
-            card.innerHTML = `
+                        openEditor(id);
 
-                <div
-                    class="project-number"
-                >
-                    PROJECT ${project.number}
-                </div>
+                    }
+                );
 
+            });
 
-                <h2>
-                    ${project.title}
-                </h2>
+        }
 
 
-                <p>
-                    ${project.description}
-                </p>
+
+        /* =========================
+           OPEN EDITOR
+        ========================= */
+
+        function openEditor(id) {
+
+            selectedProject =
+                projects.find(
+                    project =>
+                        project.id === id
+                );
 
 
-                <div class="tags">
+            if (!selectedProject) {
 
-                    ${project.tags.map(tag => `
+                return;
 
-                        <span class="tag">
-                            ${tag}
-                        </span>
-
-                    `).join("")}
-
-                </div>
-
-            `;
+            }
 
 
-            container.appendChild(card);
+            titleInput.value =
+                selectedProject.title;
 
-        });
+
+            imageInput.value =
+                selectedProject.image;
+
+
+            descriptionInput.value =
+                selectedProject.description;
+
+
+            tagsInput.value =
+                selectedProject.tags.join(
+                    ", "
+                );
+
+
+            linkInput.value =
+                selectedProject.link;
+
+
+            buttonTextInput.value =
+                selectedProject.buttonText;
+
+
+            editor.classList.add(
+                "active"
+            );
+
+
+            editor.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+
+
+
+        /* =========================
+           SAVE
+        ========================= */
+
+        saveButton.addEventListener(
+            "click",
+            () => {
+
+                if (!selectedProject) {
+
+                    return;
+
+                }
+
+
+                selectedProject.title =
+                    titleInput.value;
+
+
+                selectedProject.image =
+                    imageInput.value;
+
+
+                selectedProject.description =
+                    descriptionInput.value;
+
+
+                selectedProject.tags =
+                    tagsInput.value
+                        .split(",")
+                        .map(tag => tag.trim())
+                        .filter(tag => tag !== "");
+
+
+                selectedProject.link =
+                    linkInput.value;
+
+
+                selectedProject.buttonText =
+                    buttonTextInput.value;
+
+
+                renderProjects();
+
+
+                editor.classList.remove(
+                    "active"
+                );
+
+
+                alert(
+                    "Changes updated temporarily."
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           CANCEL
+        ========================= */
+
+        cancelButton.addEventListener(
+            "click",
+            () => {
+
+                selectedProject = null;
+
+
+                editor.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           INITIALIZE
+        ========================= */
+
+        renderProjects();
 
     </script>
 
