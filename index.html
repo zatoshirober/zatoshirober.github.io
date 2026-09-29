@@ -158,6 +158,10 @@
         }
 
 
+        /* =========================
+           VIDEO DARK OVERLAY
+        ========================= */
+
         .hero-video-overlay {
             position: absolute;
 
@@ -175,6 +179,35 @@
                 );
 
             pointer-events: none;
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           LOGO OVER VIDEO
+        ========================= */
+
+        .hero-logo {
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform: translate(-50%, -50%);
+
+            width: min(500px, 70vw);
+
+            height: auto;
+
+            display: block;
+
+            z-index: 3;
+
+            filter:
+                drop-shadow(
+                    0 8px 20px rgba(0,0,0,0.65)
+                );
         }
 
 
@@ -203,21 +236,6 @@
             opacity: 0.9;
 
             margin-bottom: 20px;
-        }
-
-
-        /* =========================
-           HERO LOGO
-        ========================= */
-
-        .hero-logo {
-            width: min(500px, 80vw);
-
-            height: auto;
-
-            display: block;
-
-            margin: 0 auto 25px;
         }
 
 
@@ -537,7 +555,7 @@
 
 
             .hero-logo {
-                width: 80vw;
+                width: 75vw;
 
                 max-width: 400px;
             }
@@ -621,7 +639,9 @@
         >
 
 
-            <!-- VIDEO -->
+            <!-- =========================
+                 VIDEO + LOGO
+            ========================= -->
 
             <div class="hero-video-container">
 
@@ -643,14 +663,27 @@
                 </video>
 
 
+                <!-- DARK OVERLAY -->
+
                 <div class="hero-video-overlay"></div>
+
+
+                <!-- LOGO OVER THE VIDEO -->
+
+                <img
+                    src="logo.png"
+                    alt="Zatoshi Rober"
+                    class="hero-logo"
+                >
 
 
             </div>
 
 
 
-            <!-- PRESENTATION -->
+            <!-- =========================
+                 PRESENTATION
+            ========================= -->
 
             <div class="hero-content">
 
@@ -660,15 +693,6 @@
                     Indie Game Developer
 
                 </p>
-
-
-                <!-- LOGO CENTRAL -->
-
-                <img
-                    src="logo.png"
-                    alt="Zatoshi Rober"
-                    class="hero-logo"
-                >
 
 
                 <h2>
