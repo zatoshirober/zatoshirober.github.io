@@ -9,7 +9,18 @@
 
     <title>Zatoshi Rober | Indie Game Developer</title>
 
-    <meta name="description" content="Zatoshi Rober - Indie Game Developer creating games, worlds and interactive experiences with Unity.">
+    <meta
+        name="description"
+        content="Zatoshi Rober - Indie Game Developer creating games, worlds and interactive experiences with Unity."
+    >
+
+
+    <!-- =========================
+         SUPABASE
+    ========================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 
     <style>
 
@@ -23,14 +34,19 @@
             box-sizing: border-box;
         }
 
+
         html {
             scroll-behavior: smooth;
         }
 
+
         body {
             font-family: Arial, Helvetica, sans-serif;
+
             background: #2A2A2A;
+
             color: #FFFFFF;
+
             line-height: 1.6;
         }
 
@@ -41,36 +57,45 @@
 
         header {
             position: fixed;
+
             top: 0;
             left: 0;
+
             width: 100%;
 
             padding: 20px 8%;
 
             display: flex;
+
             justify-content: space-between;
+
             align-items: center;
 
-            background: rgba(42, 42, 42, 0.90);
+            background:
+                rgba(42, 42, 42, 0.90);
 
             backdrop-filter: blur(10px);
 
             z-index: 1000;
 
             border-bottom:
-                1px solid rgba(255,255,255,0.08);
+                1px solid
+                rgba(255,255,255,0.08);
         }
 
 
         .logo img {
             height: 45px;
+
             width: auto;
+
             display: block;
         }
 
 
         nav {
             display: flex;
+
             gap: 30px;
         }
 
@@ -103,7 +128,8 @@
 
             background: #49DD4B;
 
-            transition: width 0.3s ease;
+            transition:
+                width 0.3s ease;
         }
 
 
@@ -118,6 +144,7 @@
 
         .hero {
             padding-top: 110px;
+
             padding-bottom: 70px;
 
             text-align: center;
@@ -140,10 +167,12 @@
             background: #111;
 
             border-top:
-                1px solid rgba(255,255,255,0.08);
+                1px solid
+                rgba(255,255,255,0.08);
 
             border-bottom:
-                1px solid rgba(255,255,255,0.08);
+                1px solid
+                rgba(255,255,255,0.08);
         }
 
 
@@ -194,9 +223,15 @@
             top: 50%;
             left: 50%;
 
-            transform: translate(-50%, -50%);
+            transform:
+                translate(-50%, -50%);
 
-            width: clamp(65px, 18vw, 120px);
+            width:
+                clamp(
+                    65px,
+                    18vw,
+                    120px
+                );
 
             height: auto;
 
@@ -241,7 +276,11 @@
 
         .hero h2 {
             font-size:
-                clamp(1.2rem, 3vw, 2rem);
+                clamp(
+                    1.2rem,
+                    3vw,
+                    2rem
+                );
 
             font-weight: normal;
 
@@ -254,7 +293,8 @@
         .hero-description {
             max-width: 650px;
 
-            margin: 0 auto 40px;
+            margin:
+                0 auto 40px;
 
             opacity: 0.65;
         }
@@ -270,7 +310,8 @@
             padding: 14px 28px;
 
             border:
-                1px solid #49DD4B;
+                1px solid
+                #49DD4B;
 
             color: #49DD4B;
 
@@ -289,7 +330,8 @@
 
             color: #2A2A2A;
 
-            transform: translateY(-2px);
+            transform:
+                translateY(-2px);
         }
 
 
@@ -334,7 +376,10 @@
             display: grid;
 
             grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
+                repeat(
+                    auto-fit,
+                    minmax(280px, 1fr)
+                );
 
             gap: 30px;
 
@@ -348,7 +393,8 @@
 
         .project-card {
             border:
-                1px solid rgba(255,255,255,0.1);
+                1px solid
+                rgba(255,255,255,0.1);
 
             padding: 30px;
 
@@ -399,7 +445,12 @@
 
         .featured-project {
             border-color:
-                rgba(73, 221, 75, 0.35);
+                rgba(
+                    73,
+                    221,
+                    75,
+                    0.35
+                );
         }
 
 
@@ -441,7 +492,13 @@
 
         .project-tags span {
             border:
-                1px solid rgba(73, 221, 75, 0.35);
+                1px solid
+                rgba(
+                    73,
+                    221,
+                    75,
+                    0.35
+                );
 
             color: #49DD4B;
 
@@ -505,7 +562,8 @@
 
         .skill {
             border:
-                1px solid rgba(255,255,255,0.2);
+                1px solid
+                rgba(255,255,255,0.2);
 
             padding: 8px 15px;
 
@@ -539,7 +597,8 @@
             text-align: center;
 
             border-top:
-                1px solid rgba(255,255,255,0.08);
+                1px solid
+                rgba(255,255,255,0.08);
 
             opacity: 0.5;
 
@@ -660,7 +719,9 @@
                  VIDEO + LOGO
             ========================= -->
 
-            <div class="hero-video-container">
+            <div
+                class="hero-video-container"
+            >
 
 
                 <video
@@ -682,7 +743,9 @@
 
                 <!-- DARK OVERLAY -->
 
-                <div class="hero-video-overlay"></div>
+                <div
+                    class="hero-video-overlay"
+                ></div>
 
 
                 <!-- LOGO OVER VIDEO -->
@@ -926,102 +989,226 @@
     </footer>
 
 
-    <!-- =========================
-         PROJECT DATA
-    ========================= -->
-
-    <script src="projects.js"></script>
-
 
     <!-- =========================
-         PROJECT GENERATOR
+         SUPABASE PROJECT SYSTEM
     ========================= -->
 
     <script>
 
+        /* =========================
+           SUPABASE CONFIGURATION
+        ========================= */
+
+        const SUPABASE_URL =
+            "https://dtyxomanxjghnqoshojk.supabase.co";
+
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "sb_publishable_JGKuOtOYZxH7dG7NDtiOAg_mT2MgGbE";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
+
+        /* =========================
+           PROJECT CONTAINER
+        ========================= */
+
         const projectsContainer =
-            document.getElementById("projects-container");
+            document.getElementById(
+                "projects-container"
+            );
 
 
-        projects.forEach(project => {
 
-            const article =
-                document.createElement("article");
+        /* =========================
+           LOAD PROJECTS
+        ========================= */
+
+        async function loadProjects() {
+
+            projectsContainer.innerHTML = `
+                <p style="
+                    opacity: 0.6;
+                    text-align: center;
+                    width: 100%;
+                ">
+                    Loading projects...
+                </p>
+            `;
 
 
-            article.className = "project-card";
+            const { data, error } =
+                await supabaseClient
+
+                    .from("projects")
+
+                    .select("*")
+
+                    .order("id", {
+                        ascending: true
+                    });
 
 
-            if (project.featured) {
+            if (error) {
 
-                article.classList.add(
-                    "featured-project"
+                console.error(
+                    "Error loading projects:",
+                    error
                 );
+
+
+                projectsContainer.innerHTML = `
+                    <p style="
+                        opacity: 0.6;
+                        text-align: center;
+                        width: 100%;
+                    ">
+                        Unable to load projects.
+                    </p>
+                `;
+
+                return;
 
             }
 
 
-            article.innerHTML = `
+            if (!data || data.length === 0) {
 
-                <div class="project-number">
+                projectsContainer.innerHTML = `
+                    <p style="
+                        opacity: 0.6;
+                        text-align: center;
+                        width: 100%;
+                    ">
+                        No projects available.
+                    </p>
+                `;
 
-                    ${project.number}
+                return;
 
-                </div>
-
-
-                <img
-                    src="${project.image}"
-                    alt="${project.title}"
-                    class="project-image"
-                >
-
-
-                <h3>
-
-                    ${project.title}
-
-                </h3>
+            }
 
 
-                <p>
-
-                    ${project.description}
-
-                </p>
+            projectsContainer.innerHTML = "";
 
 
-                <div class="project-tags">
+            data.forEach(project => {
 
-                    ${project.tags.map(tag => `
-
-                        <span>
-                            ${tag}
-                        </span>
-
-                    `).join("")}
-
-                </div>
+                const article =
+                    document.createElement(
+                        "article"
+                    );
 
 
-                <a
-                    href="${project.link}"
-                    class="button"
-                    ${project.link.startsWith("http")
-                        ? 'target="_blank" rel="noopener noreferrer"'
-                        : ""}
-                >
-
-                    ${project.buttonText}
-
-                </a>
-
-            `;
+                article.className =
+                    "project-card";
 
 
-            projectsContainer.appendChild(article);
+                if (project.featured) {
 
-        });
+                    article.classList.add(
+                        "featured-project"
+                    );
+
+                }
+
+
+                const tags =
+                    project.tags
+                        ? project.tags
+                            .split(",")
+                            .map(
+                                tag =>
+                                    tag.trim()
+                            )
+                            .filter(
+                                tag =>
+                                    tag !== ""
+                            )
+                        : [];
+
+
+                article.innerHTML = `
+
+                    <div
+                        class="project-number"
+                    >
+                        ${project.number}
+                    </div>
+
+
+                    <img
+                        src="${project.image}"
+                        alt="${project.title}"
+                        class="project-image"
+                    >
+
+
+                    <h3>
+                        ${project.title}
+                    </h3>
+
+
+                    <p>
+                        ${project.description}
+                    </p>
+
+
+                    <div
+                        class="project-tags"
+                    >
+
+                        ${tags.map(tag => `
+
+                            <span>
+                                ${tag}
+                            </span>
+
+                        `).join("")}
+
+                    </div>
+
+
+                    <a
+                        href="${project.link}"
+                        class="button"
+                        ${
+                            project.link &&
+                            project.link.startsWith("http")
+                                ? 'target="_blank" rel="noopener noreferrer"'
+                                : ""
+                        }
+                    >
+
+                        ${project.button_text}
+
+                    </a>
+
+                `;
+
+
+                projectsContainer.appendChild(
+                    article
+                );
+
+            });
+
+        }
+
+
+
+        /* =========================
+           START
+        ========================= */
+
+        loadProjects();
 
     </script>
 
