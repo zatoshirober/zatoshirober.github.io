@@ -465,19 +465,20 @@
         ========================= */
 
         .about {
-    max-width: 1000px;
+            max-width: 800px;
 
-    margin: 0 auto;
+            margin: 0 auto;
 
-    display: grid;
+            display: flex;
 
-    grid-template-columns:
-        1.5fr 1fr;
+            flex-direction: column;
 
-    gap: 60px;
+            align-items: center;
 
-    align-items: start;
-}
+            text-align: center;
+
+            gap: 20px;
+        }
 
 
         .about p {
@@ -494,9 +495,11 @@
 
             flex-wrap: wrap;
 
+            justify-content: center;
+
             gap: 12px;
 
-            margin-top: 30px;
+            margin-top: 10px;
         }
 
 
@@ -579,13 +582,6 @@
 
             section {
                 padding: 80px 5%;
-            }
-
-
-            .about {
-                grid-template-columns: 1fr;
-
-                gap: 40px;
             }
 
 
@@ -764,207 +760,13 @@
             </h2>
 
 
-            <div class="projects">
-
-
-                <!-- =========================
-                     PROJECT 01
-                ========================= -->
-
-                <article
-                    class="project-card featured-project"
-                >
-
-
-                    <div class="project-number">
-
-                        01
-
-                    </div>
-
-
-                    <img
-                        src="portada1.png"
-                        alt="Robert Was Alone"
-                        class="project-image"
-                    >
-
-
-                    <h3>
-
-                        Robert Was Alone
-
-                    </h3>
-
-
-                    <p>
-
-                        A 2D puzzle-platformer created with Unity,
-                        inspired by the idea of programs discovering
-                        their purpose in a mysterious digital world.
-
-                    </p>
-
-
-                    <div class="project-tags">
-
-                        <span>Unity</span>
-
-                        <span>C#</span>
-
-                        <span>2D</span>
-
-                        <span>Puzzle Platformer</span>
-
-                    </div>
-
-
-                    <a
-                        href="https://zatoshi-rober.itch.io/rober-was-alone"
-                        class="button"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-
-                        VIEW GAME
-
-                    </a>
-
-
-                </article>
-
-
-
-                <!-- =========================
-                     PROJECT 02
-                ========================= -->
-
-                <article
-                    class="project-card"
-                >
-
-
-                    <div class="project-number">
-
-                        02
-
-                    </div>
-
-
-                    <img
-                        src="portada1.png"
-                        alt="Upcoming Project"
-                        class="project-image"
-                    >
-
-
-                    <h3>
-
-                        Upcoming Project
-
-                    </h3>
-
-
-                    <p>
-
-                        A new interactive experience currently
-                        in development.
-
-                    </p>
-
-
-                    <div class="project-tags">
-
-                        <span>Unity</span>
-
-                        <span>C#</span>
-
-                        <span>Game Design</span>
-
-                        <span>In Development</span>
-
-                    </div>
-
-
-                    <a
-                        href="#contact"
-                        class="button"
-                    >
-
-                        VIEW PROJECT
-
-                    </a>
-
-
-                </article>
-
-
-
-                <!-- =========================
-                     PROJECT 03
-                ========================= -->
-
-                <article
-                    class="project-card"
-                >
-
-
-                    <div class="project-number">
-
-                        03
-
-                    </div>
-
-
-                    <img
-                        src="portada1.png"
-                        alt="Experiments"
-                        class="project-image"
-                    >
-
-
-                    <h3>
-
-                        Experiments
-
-                    </h3>
-
-
-                    <p>
-
-                        Gameplay experiments, prototypes and
-                        ideas created while learning game development.
-
-                    </p>
-
-
-                    <div class="project-tags">
-
-                        <span>Unity</span>
-
-                        <span>C#</span>
-
-                        <span>Prototype</span>
-
-                        <span>Game Design</span>
-
-                    </div>
-
-
-                    <a
-                        href="#contact"
-                        class="button"
-                    >
-
-                        VIEW PROJECT
-
-                    </a>
-
-
-                </article>
-
+            <div
+                class="projects"
+                id="projects-container"
+            >
 
             </div>
+
 
         </section>
 
@@ -1123,9 +925,108 @@
 
     </footer>
 
+
+    <!-- =========================
+         PROJECT DATA
+    ========================= -->
+
     <script src="projects.js"></script>
+
+
+    <!-- =========================
+         PROJECT GENERATOR
+    ========================= -->
+
+    <script>
+
+        const projectsContainer =
+            document.getElementById("projects-container");
+
+
+        projects.forEach(project => {
+
+            const article =
+                document.createElement("article");
+
+
+            article.className = "project-card";
+
+
+            if (project.featured) {
+
+                article.classList.add(
+                    "featured-project"
+                );
+
+            }
+
+
+            article.innerHTML = `
+
+                <div class="project-number">
+
+                    ${project.number}
+
+                </div>
+
+
+                <img
+                    src="${project.image}"
+                    alt="${project.title}"
+                    class="project-image"
+                >
+
+
+                <h3>
+
+                    ${project.title}
+
+                </h3>
+
+
+                <p>
+
+                    ${project.description}
+
+                </p>
+
+
+                <div class="project-tags">
+
+                    ${project.tags.map(tag => `
+
+                        <span>
+                            ${tag}
+                        </span>
+
+                    `).join("")}
+
+                </div>
+
+
+                <a
+                    href="${project.link}"
+                    class="button"
+                    ${project.link.startsWith("http")
+                        ? 'target="_blank" rel="noopener noreferrer"'
+                        : ""}
+                >
+
+                    ${project.buttonText}
+
+                </a>
+
+            `;
+
+
+            projectsContainer.appendChild(article);
+
+        });
+
+    </script>
 
 
 </body>
 
 </html>
+
