@@ -14,7 +14,7 @@ const projects = [
 
     {
         number: "02",
-        title: "Upcoming Project",
+        title: "My New Project",
         image: "portada1.png",
         description: "A new interactive experience currently in development.",
         tags: ["Unity", "C#", "Game Design", "In Development"],
