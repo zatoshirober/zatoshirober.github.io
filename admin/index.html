@@ -704,14 +704,6 @@
 
 
     <!-- =========================
-         PROJECT DATA
-    ========================= -->
-
-    <script src="../projects.js"></script>
-
-
-
-    <!-- =========================
          ADMIN SYSTEM
     ========================= -->
 
@@ -848,6 +840,8 @@
             );
 
 
+        let projects = [];
+
         let selectedProject = null;
 
 
@@ -891,12 +885,21 @@
 
             const { error } =
                 await supabaseClient.auth.signInWithPassword({
+
                     email: email,
+
                     password: password
+
                 });
 
 
             if (error) {
+
+                console.error(
+                    "Login error:",
+                    error
+                );
+
 
                 loginError.textContent =
                     "Invalid email or password.";
@@ -914,7 +917,7 @@
             }
 
 
-            showAdminPanel();
+            await showAdminPanel();
 
         }
 
@@ -924,7 +927,7 @@
            SHOW ADMIN PANEL
         ========================= */
 
-        function showAdminPanel() {
+        async function showAdminPanel() {
 
             loginContainer.style.display =
                 "none";
@@ -940,7 +943,7 @@
                 "LOGIN";
 
 
-            renderProjects();
+            await loadProjects();
 
         }
 
@@ -1007,6 +1010,100 @@
             "click",
             logout
         );
+
+
+
+        /* =========================
+           LOAD PROJECTS FROM SUPABASE
+        ========================= */
+
+        async function loadProjects() {
+
+            projectsContainer.innerHTML = `
+                <p style="opacity:0.6;">
+                    Loading projects...
+                </p>
+            `;
+
+
+            const { data, error } =
+                await supabaseClient
+
+                    .from("projects")
+
+                    .select("*")
+
+                    .order("id", {
+                        ascending: true
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Error loading projects:",
+                    error
+                );
+
+
+                projectsContainer.innerHTML = `
+                    <p style="color:#ff6b6b;">
+                        Error loading projects.
+                    </p>
+                `;
+
+                return;
+
+            }
+
+
+            projects =
+                data.map(project => ({
+
+                    id:
+                        project.id,
+
+                    number:
+                        project.number,
+
+                    title:
+                        project.title,
+
+                    image:
+                        project.image,
+
+                    description:
+                        project.description,
+
+                    tags:
+                        project.tags
+                            ? project.tags
+                                .split(",")
+                                .map(
+                                    tag =>
+                                        tag.trim()
+                                )
+                                .filter(
+                                    tag =>
+                                        tag !== ""
+                                )
+                            : [],
+
+                    link:
+                        project.link,
+
+                    buttonText:
+                        project.button_text,
+
+                    featured:
+                        project.featured
+
+                }));
+
+
+            renderProjects();
+
+        }
 
 
 
@@ -1211,7 +1308,10 @@
                     tagsInput.value
                         .split(",")
                         .map(tag => tag.trim())
-                        .filter(tag => tag !== "");
+                        .filter(
+                            tag =>
+                                tag !== ""
+                        );
 
 
                 selectedProject.link =
@@ -1271,7 +1371,7 @@
 
             if (data.session) {
 
-                showAdminPanel();
+                await showAdminPanel();
 
             }
 
