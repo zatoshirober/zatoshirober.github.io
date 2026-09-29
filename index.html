@@ -221,9 +221,13 @@
 
         /* ABOUT */
 
-        .about {
-            max-width: 800px;
-        }
+       .about {
+    max-width: 1000px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
 
         .about p {
             font-size: 1.1rem;
@@ -432,44 +436,40 @@
 
         <!-- ABOUT -->
 
-        <section id="about">
+       <div class="about">
 
-            <h2 class="section-title">
-                About Me
-            </h2>
+    <div class="about-text">
 
-            <div class="about">
+        <p>
+            I’m an indie game developer focused on creating
+            interactive experiences with Unity and C#.
+        </p>
 
-               <p>
-    I’m an indie game developer focused on creating
-    interactive experiences with Unity and C#.
-</p>
+        <p>
+            I enjoy designing gameplay systems, experimenting
+            with mechanics and building worlds that combine
+            gameplay, exploration and storytelling.
+        </p>
 
-<p>
-    I enjoy designing gameplay systems, experimenting
-    with mechanics and building worlds that combine
-    gameplay, exploration and storytelling.
-</p>
+        <p>
+            Robert Was Alone is the beginning of my journey
+            as a game developer, and this portfolio is where
+            I share the projects, experiments and ideas I bring to life.
+        </p>
 
-<p>
-    Robert Was Alone is the beginning of my journey
-    as a game developer, and this portfolio is where
-    I share the projects, experiments and ideas I bring to life.
-</p>
+    </div>
 
-                <div class="skills">
+    <div class="skills">
 
-                    <span class="skill">Unity</span>
-                    <span class="skill">C#</span>
-                    <span class="skill">Game Design</span>
-                    <span class="skill">Gameplay Programming</span>
-                    <span class="skill">World Building</span>
+        <span class="skill">Unity</span>
+        <span class="skill">C#</span>
+        <span class="skill">Game Design</span>
+        <span class="skill">Gameplay Programming</span>
+        <span class="skill">World Building</span>
 
-                </div>
+    </div>
 
-            </div>
-
-        </section>
+</div>
 
 
         <!-- CONTACT -->
