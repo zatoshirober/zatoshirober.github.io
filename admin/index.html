@@ -14,6 +14,13 @@
     <title>Zatoshi Rober | Admin</title>
 
 
+    <!-- =========================
+         SUPABASE
+    ========================= -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
     <style>
 
         * {
@@ -34,15 +41,158 @@
         }
 
 
+        /* =========================
+           LOGIN
+        ========================= */
+
+        .login-container {
+
+            max-width: 420px;
+
+            margin: 100px auto;
+
+            padding: 35px;
+
+            background: #222222;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.12);
+        }
+
+
+        .login-container h1 {
+
+            margin-bottom: 10px;
+        }
+
+
+        .login-subtitle {
+
+            opacity: 0.6;
+
+            margin-bottom: 30px;
+        }
+
+
+        .login-field {
+
+            margin-bottom: 20px;
+        }
+
+
+        .login-field label {
+
+            display: block;
+
+            margin-bottom: 8px;
+
+            color: #49DD4B;
+
+            font-size: 0.9rem;
+        }
+
+
+        .login-field input {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.15);
+
+            background: #1A1A1A;
+
+            color: #FFFFFF;
+
+            font-family: inherit;
+        }
+
+
+        .login-button {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border:
+                1px solid
+                #49DD4B;
+
+            background: #49DD4B;
+
+            color: #2A2A2A;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .login-button:hover {
+
+            opacity: 0.85;
+        }
+
+
+        .login-error {
+
+            margin-top: 15px;
+
+            color: #ff6b6b;
+
+            display: none;
+        }
+
+
+        /* =========================
+           ADMIN PANEL
+        ========================= */
+
+        #admin-panel {
+
+            display: none;
+        }
+
+
         h1 {
             margin-bottom: 10px;
         }
 
 
         .subtitle {
+
             opacity: 0.6;
 
+            margin-bottom: 20px;
+        }
+
+
+        .logout-button {
+
+            padding: 10px 18px;
+
             margin-bottom: 40px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.3);
+
+            background: transparent;
+
+            color: #FFFFFF;
+
+            cursor: pointer;
+        }
+
+
+        .logout-button:hover {
+
+            border-color: #49DD4B;
+
+            color: #49DD4B;
         }
 
 
@@ -299,6 +449,15 @@
             }
 
 
+            .login-container {
+
+                margin: 50px auto;
+
+                padding: 25px;
+
+            }
+
+
             .editor {
 
                 padding: 20px;
@@ -316,146 +475,227 @@
 
 
     <!-- =========================
-         HEADER
-    ========================= -->
-
-    <h1>
-        Zatoshi Rober
-    </h1>
-
-
-    <p class="subtitle">
-        Admin Panel — Projects
-    </p>
-
-
-
-    <!-- =========================
-         PROJECTS
+         LOGIN
     ========================= -->
 
     <div
-        class="projects"
-        id="projects-container"
+        class="login-container"
+        id="login-container"
     >
+
+        <h1>
+            Zatoshi Rober
+        </h1>
+
+
+        <p class="login-subtitle">
+            Admin Panel
+        </p>
+
+
+        <div class="login-field">
+
+            <label for="login-email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="login-email"
+                autocomplete="email"
+            >
+
+        </div>
+
+
+        <div class="login-field">
+
+            <label for="login-password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="login-password"
+                autocomplete="current-password"
+            >
+
+        </div>
+
+
+        <button
+            class="login-button"
+            id="login-button"
+        >
+            LOGIN
+        </button>
+
+
+        <p
+            class="login-error"
+            id="login-error"
+        >
+        </p>
+
     </div>
 
 
 
     <!-- =========================
-         EDITOR
+         ADMIN PANEL
     ========================= -->
 
     <div
-        class="editor"
-        id="editor"
+        id="admin-panel"
     >
 
-        <h2>
-            Edit Project
-        </h2>
+        <h1>
+            Zatoshi Rober
+        </h1>
 
 
-        <div class="field">
+        <p class="subtitle">
+            Admin Panel — Projects
+        </p>
 
-            <label for="title">
-                Project Title
-            </label>
 
-            <input
-                type="text"
-                id="title"
-            >
+        <button
+            class="logout-button"
+            id="logout-button"
+        >
+            LOGOUT
+        </button>
 
+
+
+        <!-- =========================
+             PROJECTS
+        ========================= -->
+
+        <div
+            class="projects"
+            id="projects-container"
+        >
         </div>
 
 
-        <div class="field">
 
-            <label for="image">
-                Image
-            </label>
+        <!-- =========================
+             EDITOR
+        ========================= -->
 
-            <input
-                type="text"
-                id="image"
-            >
+        <div
+            class="editor"
+            id="editor"
+        >
 
-        </div>
-
-
-        <div class="field">
-
-            <label for="description">
-                Description
-            </label>
-
-            <textarea
-                id="description"
-            ></textarea>
-
-        </div>
+            <h2>
+                Edit Project
+            </h2>
 
 
-        <div class="field">
+            <div class="field">
 
-            <label for="tags">
-                Tags
-            </label>
+                <label for="title">
+                    Project Title
+                </label>
 
-            <input
-                type="text"
-                id="tags"
-                placeholder="Unity, C#, 2D"
-            >
+                <input
+                    type="text"
+                    id="title"
+                >
 
-        </div>
-
-
-        <div class="field">
-
-            <label for="link">
-                Project Link
-            </label>
-
-            <input
-                type="text"
-                id="link"
-            >
-
-        </div>
+            </div>
 
 
-        <div class="field">
+            <div class="field">
 
-            <label for="buttonText">
-                Button Text
-            </label>
+                <label for="image">
+                    Image
+                </label>
 
-            <input
-                type="text"
-                id="buttonText"
-            >
+                <input
+                    type="text"
+                    id="image"
+                >
 
-        </div>
-
-
-        <div class="editor-actions">
-
-            <button
-                class="save-button"
-                id="save-button"
-            >
-                SAVE
-            </button>
+            </div>
 
 
-            <button
-                class="cancel-button"
-                id="cancel-button"
-            >
-                CANCEL
-            </button>
+            <div class="field">
+
+                <label for="description">
+                    Description
+                </label>
+
+                <textarea
+                    id="description"
+                ></textarea>
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="tags">
+                    Tags
+                </label>
+
+                <input
+                    type="text"
+                    id="tags"
+                    placeholder="Unity, C#, 2D"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="link">
+                    Project Link
+                </label>
+
+                <input
+                    type="text"
+                    id="link"
+                >
+
+            </div>
+
+
+            <div class="field">
+
+                <label for="buttonText">
+                    Button Text
+                </label>
+
+                <input
+                    type="text"
+                    id="buttonText"
+                >
+
+            </div>
+
+
+            <div class="editor-actions">
+
+                <button
+                    class="save-button"
+                    id="save-button"
+                >
+                    SAVE
+                </button>
+
+
+                <button
+                    class="cancel-button"
+                    id="cancel-button"
+                >
+                    CANCEL
+                </button>
+
+            </div>
 
         </div>
 
@@ -476,6 +716,77 @@
     ========================= -->
 
     <script>
+
+        /* =========================
+           SUPABASE CONFIGURATION
+        ========================= */
+
+        const SUPABASE_URL =
+            "https://dtyxomanxjghnqoshojk.supabase.co";
+
+
+        const SUPABASE_PUBLISHABLE_KEY =
+            "PEGA_AQUI_TU_PUBLISHABLE_KEY";
+
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_PUBLISHABLE_KEY
+            );
+
+
+
+        /* =========================
+           LOGIN ELEMENTS
+        ========================= */
+
+        const loginContainer =
+            document.getElementById(
+                "login-container"
+            );
+
+
+        const loginEmail =
+            document.getElementById(
+                "login-email"
+            );
+
+
+        const loginPassword =
+            document.getElementById(
+                "login-password"
+            );
+
+
+        const loginButton =
+            document.getElementById(
+                "login-button"
+            );
+
+
+        const loginError =
+            document.getElementById(
+                "login-error"
+            );
+
+
+        const adminPanel =
+            document.getElementById(
+                "admin-panel"
+            );
+
+
+        const logoutButton =
+            document.getElementById(
+                "logout-button"
+            );
+
+
+
+        /* =========================
+           PROJECT ELEMENTS
+        ========================= */
 
         const projectsContainer =
             document.getElementById(
@@ -538,6 +849,164 @@
 
 
         let selectedProject = null;
+
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        async function login() {
+
+            loginError.style.display =
+                "none";
+
+
+            const email =
+                loginEmail.value.trim();
+
+
+            const password =
+                loginPassword.value;
+
+
+            if (!email || !password) {
+
+                loginError.textContent =
+                    "Enter your email and password.";
+
+                loginError.style.display =
+                    "block";
+
+                return;
+
+            }
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent =
+                "LOGGING IN...";
+
+
+            const { error } =
+                await supabaseClient.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+
+            if (error) {
+
+                loginError.textContent =
+                    "Invalid email or password.";
+
+                loginError.style.display =
+                    "block";
+
+                loginButton.disabled = false;
+
+                loginButton.textContent =
+                    "LOGIN";
+
+                return;
+
+            }
+
+
+            showAdminPanel();
+
+        }
+
+
+
+        /* =========================
+           SHOW ADMIN PANEL
+        ========================= */
+
+        function showAdminPanel() {
+
+            loginContainer.style.display =
+                "none";
+
+
+            adminPanel.style.display =
+                "block";
+
+
+            loginButton.disabled = false;
+
+            loginButton.textContent =
+                "LOGIN";
+
+
+            renderProjects();
+
+        }
+
+
+
+        /* =========================
+           LOGOUT
+        ========================= */
+
+        async function logout() {
+
+            await supabaseClient.auth.signOut();
+
+
+            adminPanel.style.display =
+                "none";
+
+
+            loginContainer.style.display =
+                "block";
+
+
+            loginPassword.value = "";
+
+        }
+
+
+
+        /* =========================
+           LOGIN BUTTON
+        ========================= */
+
+        loginButton.addEventListener(
+            "click",
+            login
+        );
+
+
+
+        /* =========================
+           ENTER KEY LOGIN
+        ========================= */
+
+        loginPassword.addEventListener(
+            "keydown",
+            event => {
+
+                if (event.key === "Enter") {
+
+                    login();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           LOGOUT BUTTON
+        ========================= */
+
+        logoutButton.addEventListener(
+            "click",
+            logout
+        );
 
 
 
@@ -712,7 +1181,7 @@
 
 
         /* =========================
-           SAVE
+           TEMPORARY SAVE
         ========================= */
 
         saveButton.addEventListener(
@@ -791,10 +1260,25 @@
 
 
         /* =========================
-           INITIALIZE
+           CHECK EXISTING SESSION
         ========================= */
 
-        renderProjects();
+        async function checkSession() {
+
+            const { data } =
+                await supabaseClient.auth.getSession();
+
+
+            if (data.session) {
+
+                showAdminPanel();
+
+            }
+
+        }
+
+
+        checkSession();
 
     </script>
 
