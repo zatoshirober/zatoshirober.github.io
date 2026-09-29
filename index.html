@@ -337,8 +337,14 @@
                 repeat(auto-fit, minmax(280px, 1fr));
 
             gap: 30px;
+
+            align-items: stretch;
         }
 
+
+        /* =========================
+           PROJECT CARD
+        ========================= */
 
         .project-card {
             border:
@@ -349,6 +355,12 @@
             background: #2A2A2A;
 
             transition: 0.3s;
+
+            display: flex;
+
+            flex-direction: column;
+
+            height: 100%;
         }
 
 
@@ -411,6 +423,8 @@
             opacity: 0.6;
 
             margin-bottom: 25px;
+
+            flex-grow: 1;
         }
 
 
@@ -434,6 +448,15 @@
             padding: 5px 10px;
 
             font-size: 0.75rem;
+        }
+
+
+        /* =========================
+           PROJECT BUTTON
+        ========================= */
+
+        .project-card .button {
+            align-self: flex-start;
         }
 
 
@@ -563,6 +586,11 @@
                 grid-template-columns: 1fr;
 
                 gap: 40px;
+            }
+
+
+            .project-card {
+                height: auto;
             }
 
         }
