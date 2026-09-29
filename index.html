@@ -196,13 +196,6 @@
 
             transform: translate(-50%, -50%);
 
-            /*
-                Responsive:
-                mínimo: 65px
-                adaptable: 18vw
-                máximo: 120px
-            */
-
             width: clamp(65px, 18vw, 120px);
 
             height: auto;
@@ -561,14 +554,6 @@
             }
 
 
-            /*
-                El logo ya es responsive
-                mediante clamp().
-                No necesitamos cambiar
-                su tamaño aquí.
-            */
-
-
             section {
                 padding: 80px 5%;
             }
@@ -663,10 +648,10 @@
                     preload="metadata"
                 >
 
-                   <source
-    src="Portada-Video.webm?v=2"
-    type="video/webm"
->
+                    <source
+                        src="Portada-Video.webm?v=2"
+                        type="video/webm"
+                    >
 
                 </video>
 
@@ -676,7 +661,7 @@
                 <div class="hero-video-overlay"></div>
 
 
-                <!-- LOGO OVER THE VIDEO -->
+                <!-- LOGO OVER VIDEO -->
 
                 <img
                     src="logo.png"
@@ -754,7 +739,9 @@
             <div class="projects">
 
 
-                <!-- PROJECT 01 -->
+                <!-- =========================
+                     PROJECT 01
+                ========================= -->
 
                 <article
                     class="project-card featured-project"
@@ -820,7 +807,9 @@
 
 
 
-                <!-- PROJECT 02 -->
+                <!-- =========================
+                     PROJECT 02
+                ========================= -->
 
                 <article
                     class="project-card"
@@ -832,6 +821,13 @@
                         02
 
                     </div>
+
+
+                    <img
+                        src="portada1.png"
+                        alt="Upcoming Project"
+                        class="project-image"
+                    >
 
 
                     <h3>
@@ -849,11 +845,36 @@
                     </p>
 
 
+                    <div class="project-tags">
+
+                        <span>Unity</span>
+
+                        <span>C#</span>
+
+                        <span>Game Design</span>
+
+                        <span>In Development</span>
+
+                    </div>
+
+
+                    <a
+                        href="#contact"
+                        class="button"
+                    >
+
+                        VIEW PROJECT
+
+                    </a>
+
+
                 </article>
 
 
 
-                <!-- PROJECT 03 -->
+                <!-- =========================
+                     PROJECT 03
+                ========================= -->
 
                 <article
                     class="project-card"
@@ -865,6 +886,13 @@
                         03
 
                     </div>
+
+
+                    <img
+                        src="portada1.png"
+                        alt="Experiments"
+                        class="project-image"
+                    >
 
 
                     <h3>
@@ -880,6 +908,29 @@
                         ideas created while learning game development.
 
                     </p>
+
+
+                    <div class="project-tags">
+
+                        <span>Unity</span>
+
+                        <span>C#</span>
+
+                        <span>Prototype</span>
+
+                        <span>Game Design</span>
+
+                    </div>
+
+
+                    <a
+                        href="#contact"
+                        class="button"
+                    >
+
+                        VIEW PROJECT
+
+                    </a>
 
 
                 </article>
@@ -1048,4 +1099,3 @@
 </body>
 
 </html>
-
