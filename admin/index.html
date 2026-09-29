@@ -1,335 +1,250 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Zatoshi Rober - Admin Panel</title>
 
-    <title>Zatoshi Rober | Admin</title>
-
-
-    <!-- =========================
-         SUPABASE
-    ========================= -->
-
+    <!-- SUPABASE -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
     <style>
-
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
-
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-
-            background: #2A2A2A;
-
-            color: #FFFFFF;
-
-            padding: 40px;
+            background: #1f1f1f;
+            color: white;
+            min-height: 100vh;
         }
 
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
 
         /* =========================
            LOGIN
         ========================= */
 
-        .login-container {
+        .login-screen {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
 
+        .login-box {
+            width: 100%;
             max-width: 420px;
-
-            margin: 100px auto;
-
-            padding: 35px;
-
-            background: #222222;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.12);
+            background: #2a2a2a;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
         }
 
-
-        .login-container h1 {
+        .login-box h1 {
             margin-bottom: 10px;
+            font-size: 2rem;
         }
 
-
-        .login-subtitle {
-            opacity: 0.6;
+        .login-box p {
+            color: rgba(255,255,255,0.55);
             margin-bottom: 30px;
         }
 
-
-        .login-field {
+        .field {
             margin-bottom: 20px;
         }
 
-
-        .login-field label {
+        .field label {
             display: block;
-
             margin-bottom: 8px;
-
-            color: #49DD4B;
-
             font-size: 0.9rem;
+            color: rgba(255,255,255,0.75);
         }
 
-
-        .login-field input {
+        .field input,
+        .field textarea {
             width: 100%;
-
-            padding: 12px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.15);
-
-            background: #1A1A1A;
-
-            color: #FFFFFF;
-
-            font-family: inherit;
+            padding: 13px 14px;
+            background: #181818;
+            border: 1px solid rgba(255,255,255,0.12);
+            color: white;
+            outline: none;
+            border-radius: 0;
         }
 
+        .field input:focus,
+        .field textarea:focus {
+            border-color: #49DD4B;
+        }
+
+        .field textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .login-button,
+        .save-button,
+        .add-button {
+            border: none;
+            background: #49DD4B;
+            color: #111;
+            padding: 13px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
         .login-button {
             width: 100%;
-
-            padding: 12px;
-
-            border:
-                1px solid
-                #49DD4B;
-
-            background: #49DD4B;
-
-            color: #2A2A2A;
-
-            cursor: pointer;
-
-            font-weight: bold;
         }
 
-
-        .login-button:hover {
+        .login-button:hover,
+        .save-button:hover,
+        .add-button:hover {
             opacity: 0.85;
         }
 
-
-        .login-error {
-            margin-top: 15px;
-
-            color: #ff6b6b;
-
-            display: none;
+        .login-button:disabled,
+        .save-button:disabled,
+        .add-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
+        .message {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            min-height: 20px;
+        }
+
+        .message.error {
+            color: #ff6868;
+        }
+
+        .message.success {
+            color: #49DD4B;
+        }
 
         /* =========================
-           ADMIN PANEL
+           ADMIN
         ========================= */
 
-        #admin-panel {
+        .admin-panel {
             display: none;
+            min-height: 100vh;
         }
 
-
-        h1 {
-            margin-bottom: 10px;
+        .admin-header {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
         }
 
-
-        .subtitle {
-            opacity: 0.6;
-
-            margin-bottom: 20px;
+        .admin-header h1 {
+            font-size: 1.5rem;
         }
 
+        .admin-header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
         .logout-button {
-            padding: 10px 18px;
-
-            margin-bottom: 25px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.3);
-
+            border: 1px solid rgba(255,255,255,0.2);
             background: transparent;
-
-            color: #FFFFFF;
-
+            color: white;
+            padding: 10px 16px;
             cursor: pointer;
         }
-
 
         .logout-button:hover {
             border-color: #49DD4B;
-
             color: #49DD4B;
         }
 
+        .admin-content {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 50px 0 80px;
+        }
 
-        /* =========================
-           ADMIN ACTIONS
-        ========================= */
-
-        .admin-actions {
+        .projects-header {
             display: flex;
-
-            gap: 15px;
-
-            margin-bottom: 40px;
-
-            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            gap: 20px;
         }
 
-
-        .add-project-button {
-            padding: 12px 20px;
-
-            border:
-                1px solid
-                #49DD4B;
-
-            background: #49DD4B;
-
-            color: #2A2A2A;
-
-            cursor: pointer;
-
-            font-weight: bold;
-
-            transition: 0.3s;
+        .projects-header h2 {
+            font-size: 1.8rem;
         }
 
-
-        .add-project-button:hover {
-            opacity: 0.85;
-        }
-
-
-        /* =========================
-           PROJECTS
-        ========================= */
-
-        .projects {
+        .projects-list {
             display: grid;
-
-            grid-template-columns:
-                repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
-                );
-
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
 
-
         .project-card {
-            border:
-                1px solid
-                rgba(255,255,255,0.12);
-
+            background: #2a2a2a;
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 25px;
-
-            background: #222222;
         }
-
 
         .project-number {
             color: #49DD4B;
-
-            font-size: 0.85rem;
-
+            font-size: 0.8rem;
+            font-weight: bold;
             margin-bottom: 10px;
         }
 
-
-        .project-card h2 {
-            margin-bottom: 15px;
+        .project-card h3 {
+            margin-bottom: 10px;
+            font-size: 1.3rem;
         }
 
-
         .project-card p {
-            opacity: 0.6;
-
+            color: rgba(255,255,255,0.6);
+            line-height: 1.5;
             margin-bottom: 20px;
         }
 
-
-        /* =========================
-           TAGS
-        ========================= */
-
-        .tags {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            margin-bottom: 25px;
+        .project-meta {
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 20px;
         }
-
-
-        .tag {
-            border:
-                1px solid
-                rgba(73,221,75,0.4);
-
-            color: #49DD4B;
-
-            padding: 5px 9px;
-
-            font-size: 0.75rem;
-        }
-
-
-        /* =========================
-           BUTTON
-        ========================= */
 
         .edit-button {
-            display: inline-block;
-
-            padding: 10px 18px;
-
-            border:
-                1px solid
-                #49DD4B;
-
+            width: 100%;
+            padding: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
             background: transparent;
-
-            color: #49DD4B;
-
+            color: white;
             cursor: pointer;
-
-            font-weight: bold;
-
-            transition: 0.3s;
         }
-
 
         .edit-button:hover {
-            background: #49DD4B;
-
-            color: #2A2A2A;
+            border-color: #49DD4B;
+            color: #49DD4B;
         }
-
 
         /* =========================
            EDITOR
@@ -337,112 +252,61 @@
 
         .editor {
             display: none;
-
             margin-top: 40px;
-
-            padding: 30px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.15);
-
-            background: #222222;
+            background: #2a2a2a;
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 35px;
         }
-
-
-        .editor.active {
-            display: block;
-        }
-
 
         .editor h2 {
             margin-bottom: 30px;
         }
 
-
-        .field {
-            margin-bottom: 20px;
+        .editor-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
         }
 
-
-        .field label {
-            display: block;
-
-            margin-bottom: 8px;
-
-            color: #49DD4B;
-
-            font-size: 0.9rem;
+        .editor-grid .full {
+            grid-column: 1 / -1;
         }
 
-
-        .field input,
-        .field textarea {
-            width: 100%;
-
-            padding: 12px;
-
-            border:
-                1px solid
-                rgba(255,255,255,0.15);
-
-            background: #1A1A1A;
-
-            color: #FFFFFF;
-
-            font-family: inherit;
+        .checkbox-field {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
-
-        .field textarea {
-            min-height: 120px;
-
-            resize: vertical;
+        .checkbox-field input {
+            width: 18px;
+            height: 18px;
+            accent-color: #49DD4B;
         }
-
 
         .editor-actions {
             display: flex;
-
             gap: 15px;
-
-            margin-top: 30px;
-
-            flex-wrap: wrap;
+            margin-top: 25px;
         }
-
-
-        .save-button,
-        .cancel-button {
-            padding: 12px 20px;
-
-            cursor: pointer;
-
-            font-weight: bold;
-        }
-
-
-        .save-button {
-            border:
-                1px solid
-                #49DD4B;
-
-            background: #49DD4B;
-
-            color: #2A2A2A;
-        }
-
 
         .cancel-button {
-            border:
-                1px solid
-                rgba(255,255,255,0.3);
-
+            border: 1px solid rgba(255,255,255,0.2);
             background: transparent;
-
-            color: #FFFFFF;
+            color: white;
+            padding: 13px 20px;
+            cursor: pointer;
         }
 
+        .cancel-button:hover {
+            border-color: white;
+        }
+
+        .loading {
+            color: rgba(255,255,255,0.5);
+            padding: 30px 0;
+        }
 
         /* =========================
            MOBILE
@@ -450,413 +314,1197 @@
 
         @media (max-width: 700px) {
 
-            body {
-                padding: 25px 15px;
+            .login-box {
+                padding: 30px 25px;
             }
 
-
-            .login-container {
-                margin: 50px auto;
-
-                padding: 25px;
+            .admin-header {
+                flex-direction: column;
+                align-items: flex-start;
             }
 
+            .admin-header-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .projects-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .editor-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .editor-grid .full {
+                grid-column: auto;
+            }
 
             .editor {
-                padding: 20px;
+                padding: 25px;
             }
-
         }
-
     </style>
-
 </head>
 
-
 <body>
-
 
     <!-- =========================
          LOGIN
     ========================= -->
 
-    <div
-        class="login-container"
-        id="login-container"
-    >
+    <section class="login-screen" id="login-screen">
 
-        <h1>
-            Zatoshi Rober
-        </h1>
+        <div class="login-box">
 
+            <h1>Zatoshi Rober</h1>
 
-        <p class="login-subtitle">
-            Admin Panel
-        </p>
+            <p>Admin Panel</p>
 
+            <form id="login-form">
 
-        <div class="login-field">
+                <div class="field">
+                    <label for="login-email">Email</label>
 
-            <label for="login-email">
-                Email
-            </label>
+                    <input
+                        type="email"
+                        id="login-email"
+                        autocomplete="email"
+                        required
+                    >
+                </div>
 
-            <input
-                type="email"
-                id="login-email"
-                autocomplete="email"
-            >
+                <div class="field">
+                    <label for="login-password">Password</label>
+
+                    <input
+                        type="password"
+                        id="login-password"
+                        autocomplete="current-password"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    class="login-button"
+                    id="login-button"
+                >
+                    LOGIN
+                </button>
+
+                <div
+                    id="login-message"
+                    class="message"
+                ></div>
+
+            </form>
 
         </div>
 
-
-        <div class="login-field">
-
-            <label for="login-password">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="login-password"
-                autocomplete="current-password"
-            >
-
-        </div>
-
-
-        <button
-            class="login-button"
-            id="login-button"
-        >
-            LOGIN
-        </button>
-
-
-        <p
-            class="login-error"
-            id="login-error"
-        ></p>
-
-    </div>
-
+    </section>
 
 
     <!-- =========================
          ADMIN PANEL
     ========================= -->
 
-    <div id="admin-panel">
+    <section
+        class="admin-panel"
+        id="admin-panel"
+    >
 
-        <h1>
-            Zatoshi Rober
-        </h1>
+        <header class="admin-header">
+
+            <h1>Admin Panel</h1>
+
+            <div class="admin-header-right">
+
+                <span id="admin-email"></span>
+
+                <button
+                    type="button"
+                    class="logout-button"
+                    id="logout-button"
+                >
+                    LOGOUT
+                </button>
+
+            </div>
+
+        </header>
 
 
-        <p class="subtitle">
-            Admin Panel — Projects
-        </p>
+        <main class="admin-content">
+
+            <div class="projects-header">
+
+                <h2>Projects</h2>
+
+                <button
+                    type="button"
+                    class="add-button"
+                    id="add-project-button"
+                >
+                    + ADD PROJECT
+                </button>
+
+            </div>
 
 
-        <button
-            class="logout-button"
-            id="logout-button"
-        >
-            LOGOUT
-        </button>
-
-
-
-        <!-- =========================
-             ADMIN ACTIONS
-        ========================= -->
-
-        <div class="admin-actions">
-
-            <button
-                class="add-project-button"
-                id="add-project-button"
+            <div
+                id="projects-list"
+                class="projects-list"
             >
-                + ADD PROJECT
-            </button>
-
-        </div>
-
-
-
-        <!-- =========================
-             PROJECTS
-        ========================= -->
-
-        <div
-            class="projects"
-            id="projects-container"
-        ></div>
-
-
-
-        <!-- =========================
-             EDITOR
-        ========================= -->
-
-        <div
-            class="editor"
-            id="editor"
-        >
-
-            <h2 id="editor-title">
-                Edit Project
-            </h2>
-
-
-            <div class="field">
-
-                <label for="number">
-                    Project Number
-                </label>
-
-                <input
-                    type="text"
-                    id="number"
-                    placeholder="04"
-                >
-
+                <div class="loading">
+                    Loading projects...
+                </div>
             </div>
 
 
-            <div class="field">
+            <!-- =========================
+                 EDITOR
+            ========================= -->
 
-                <label for="title">
-                    Project Title
-                </label>
+            <div
+                class="editor"
+                id="editor"
+            >
 
-                <input
-                    type="text"
-                    id="title"
-                >
+                <h2 id="editor-title">
+                    Edit Project
+                </h2>
+
+                <form id="project-form">
+
+                    <div class="editor-grid">
+
+                        <!-- NUMBER -->
+
+                        <div class="field">
+
+                            <label for="project-number">
+                                Number
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-number"
+                                placeholder="01"
+                            >
+
+                        </div>
+
+
+                        <!-- TITLE -->
+
+                        <div class="field">
+
+                            <label for="project-title">
+                                Title
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-title"
+                                required
+                            >
+
+                        </div>
+
+
+                        <!-- IMAGE -->
+
+                        <div class="field full">
+
+                            <label for="project-image">
+                                Image
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-image"
+                                placeholder="portada1.png"
+                            >
+
+                        </div>
+
+
+                        <!-- DESCRIPTION -->
+
+                        <div class="field full">
+
+                            <label for="project-description">
+                                Description
+                            </label>
+
+                            <textarea
+                                id="project-description"
+                            ></textarea>
+
+                        </div>
+
+
+                        <!-- TAGS -->
+
+                        <div class="field full">
+
+                            <label for="project-tags">
+                                Tags
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-tags"
+                                placeholder="Unity, C#, 2D, Puzzle Platformer"
+                            >
+
+                        </div>
+
+
+                        <!-- LINK -->
+
+                        <div class="field">
+
+                            <label for="project-link">
+                                Link
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-link"
+                                placeholder="https://..."
+                            >
+
+                        </div>
+
+
+                        <!-- BUTTON -->
+
+                        <div class="field">
+
+                            <label for="project-button-text">
+                                Button Text
+                            </label>
+
+                            <input
+                                type="text"
+                                id="project-button-text"
+                                placeholder="VIEW GAME"
+                            >
+
+                        </div>
+
+
+                        <!-- FEATURED -->
+
+                        <div class="field full">
+
+                            <label class="checkbox-field">
+
+                                <input
+                                    type="checkbox"
+                                    id="project-featured"
+                                >
+
+                                <span>
+                                    Featured project
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="editor-actions">
+
+                        <button
+                            type="submit"
+                            class="save-button"
+                            id="save-button"
+                        >
+                            SAVE
+                        </button>
+
+                        <button
+                            type="button"
+                            class="cancel-button"
+                            id="cancel-button"
+                        >
+                            CANCEL
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="editor-message"
+                        class="message"
+                    ></div>
+
+                </form>
 
             </div>
 
+        </main>
 
-            <div class="field">
+    </section>
 
-                <label for="image">
-                    Image
-                </label>
-
-                <input
-                    type="text"
-                    id="image"
-                    placeholder="portada1.png"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="description">
-                    Description
-                </label>
-
-                <textarea
-                    id="description"
-                ></textarea>
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="tags">
-                    Tags
-                </label>
-
-                <input
-                    type="text"
-                    id="tags"
-                    placeholder="Unity, C#, 2D"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="link">
-                    Project Link
-                </label>
-
-                <input
-                    type="text"
-                    id="link"
-                    placeholder="https://..."
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="buttonText">
-                    Button Text
-                </label>
-
-                <input
-                    type="text"
-                    id="buttonText"
-                    placeholder="VIEW GAME"
-                >
-
-            </div>
-
-
-            <div class="field">
-
-                <label for="featured">
-                    Featured
-                </label>
-
-                <input
-                    type="checkbox"
-                    id="featured"
-                    style="
-                        width: auto;
-                        transform: scale(1.3);
-                    "
-                >
-
-            </div>
-
-
-            <div class="editor-actions">
-
-                <button
-                    class="save-button"
-                    id="save-button"
-                >
-                    SAVE
-                </button>
-
-
-                <button
-                    class="cancel-button"
-                    id="cancel-button"
-                >
-                    CANCEL
-                </button>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =========================
-         ADMIN SYSTEM
-    ========================= -->
 
     <script>
 
-        /* =========================
+        /* =====================================================
            SUPABASE CONFIGURATION
-        ========================= */
+        ===================================================== */
 
         const SUPABASE_URL =
             "https://dtyxomanxjghnqoshojk.supabase.co";
 
-
-        const SUPABASE_PUBLISHABLE_KEY =
+        const SUPABASE_KEY =
             "sb_publishable_JGKuOtOYZxH7dG7NDtiOAg_mT2MgGbE";
 
 
         const supabaseClient =
             window.supabase.createClient(
                 SUPABASE_URL,
-                SUPABASE_PUBLISHABLE_KEY
+                SUPABASE_KEY
             );
 
 
+        /* =====================================================
+           ELEMENTS
+        ===================================================== */
 
-        /* =========================
-           LOGIN ELEMENTS
-        ========================= */
-
-        const loginContainer =
-            document.getElementById(
-                "login-container"
-            );
-
-
-        const loginEmail =
-            document.getElementById(
-                "login-email"
-            );
-
-
-        const loginPassword =
-            document.getElementById(
-                "login-password"
-            );
-
-
-        const loginButton =
-            document.getElementById(
-                "login-button"
-            );
-
-
-        const loginError =
-            document.getElementById(
-                "login-error"
-            );
-
+        const loginScreen =
+            document.getElementById("login-screen");
 
         const adminPanel =
-            document.getElementById(
-                "admin-panel"
-            );
+            document.getElementById("admin-panel");
 
+        const loginForm =
+            document.getElementById("login-form");
+
+        const loginEmail =
+            document.getElementById("login-email");
+
+        const loginPassword =
+            document.getElementById("login-password");
+
+        const loginButton =
+            document.getElementById("login-button");
+
+        const loginMessage =
+            document.getElementById("login-message");
+
+        const adminEmail =
+            document.getElementById("admin-email");
 
         const logoutButton =
-            document.getElementById(
-                "logout-button"
-            );
+            document.getElementById("logout-button");
 
+        const projectsList =
+            document.getElementById("projects-list");
 
-
-        /* =========================
-           PROJECT ELEMENTS
-        ========================= */
-
-        const projectsContainer =
-            document.getElementById(
-                "projects-container"
-            );
-
+        const addProjectButton =
+            document.getElementById("add-project-button");
 
         const editor =
-            document.getElementById(
-                "editor"
-            );
-
+            document.getElementById("editor");
 
         const editorTitle =
-            document.getElementById(
-                "editor-title"
-            );
+            document.getElementById("editor-title");
+
+        const projectForm =
+            document.getElementById("project-form");
+
+        const projectNumber =
+            document.getElementById("project-number");
+
+        const projectTitle =
+            document.getElementById("project-title");
+
+        const projectImage =
+            document.getElementById("project-image");
+
+        const projectDescription =
+            document.getElementById("project-description");
+
+        const projectTags =
+            document.getElementById("project-tags");
+
+        const projectLink =
+            document.getElementById("project-link");
+
+        const projectButtonText =
+            document.getElementById("project-button-text");
+
+        const projectFeatured =
+            document.getElementById("project-featured");
+
+        const cancelButton =
+            document.getElementById("cancel-button");
+
+        const saveButton =
+            document.getElementById("save-button");
+
+        const editorMessage =
+            document.getElementById("editor-message");
 
 
-        const numberInput =
-            document.getElementById(
-                "number"
-            );
+        /* =====================================================
+           STATE
+        ===================================================== */
+
+        let selectedProject = null;
+
+        let creatingProject = false;
 
 
-        const titleInput =
-            document.getElementById(
-                "title"
-            );
+        /* =====================================================
+           MESSAGE HELPERS
+        ===================================================== */
+
+        function showLoginMessage(message, type = "error") {
+
+            loginMessage.textContent = message;
+
+            loginMessage.className =
+                "message " + type;
+        }
+
+
+        function showEditorMessage(message, type = "error") {
+
+            editorMessage.textContent = message;
+
+            editorMessage.className =
+                "message " + type;
+        }
+
+
+        /* =====================================================
+           LOGIN
+        ===================================================== */
+
+        async function login() {
+
+            const email =
+                loginEmail.value.trim();
+
+            const password =
+                loginPassword.value;
+
+
+            if (!email || !password) {
+
+                showLoginMessage(
+                    "Please enter your email and password."
+                );
+
+                return;
+            }
+
+
+            loginButton.disabled = true;
+
+            loginButton.textContent = "LOGGING IN...";
+
+            showLoginMessage("");
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.signInWithPassword({
+                        email: email,
+                        password: password
+                    });
+
+
+                if (error) {
+
+                    console.error(
+                        "Supabase login error:",
+                        error
+                    );
+
+                    showLoginMessage(
+                        error.message
+                    );
+
+                    return;
+                }
+
+
+                if (!data || !data.user) {
+
+                    showLoginMessage(
+                        "Login failed. No user session was created."
+                    );
+
+                    return;
+                }
+
+
+                showAdminPanel(
+                    data.user
+                );
+
+
+            } catch (error) {
+
+                console.error(
+                    "Login exception:",
+                    error
+                );
+
+                showLoginMessage(
+                    "An unexpected error occurred while logging in."
+                );
+
+            } finally {
+
+                loginButton.disabled = false;
+
+                loginButton.textContent = "LOGIN";
+            }
+        }
+
+
+        /* =====================================================
+           LOGIN FORM
+        ===================================================== */
+
+        loginForm.addEventListener(
+            "submit",
+            function(event) {
+
+                event.preventDefault();
+
+                login();
+
+            }
+        );
+
+
+        /* =====================================================
+           SHOW ADMIN
+        ===================================================== */
+
+        async function showAdminPanel(user) {
+
+            loginScreen.style.display = "none";
+
+            adminPanel.style.display = "block";
+
+            adminEmail.textContent =
+                user.email || "";
+
+
+            await loadProjects();
+        }
+
+
+        /* =====================================================
+           CHECK EXISTING SESSION
+        ===================================================== */
+
+        async function checkSession() {
+
+            try {
+
+                const {
+                    data,
+                    error
+                } =
+                    await supabaseClient.auth.getSession();
+
+
+                if (error) {
+
+                    console.error(
+                        "Session error:",
+                        error
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    data &&
+                    data.session &&
+                    data.session.user
+                ) {
+
+                    showAdminPanel(
+                        data.session.user
+                    );
+
+                }
+
+            } catch (error) {
+
+                console.error(
+                    "Session exception:",
+                    error
+                );
+            }
+        }
+
+
+        /* =====================================================
+           LOAD PROJECTS
+        ===================================================== */
+
+        async function loadProjects() {
+
+            projectsList.innerHTML =
+                '<div class="loading">Loading projects...</div>';
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient
+                    .from("projects")
+                    .select("*")
+                    .order("id", {
+                        ascending: true
+                    });
+
+
+            if (error) {
+
+                console.error(
+                    "Load projects error:",
+                    error
+                );
+
+                projectsList.innerHTML =
+                    '<div class="message error">' +
+                    "Error loading projects: " +
+                    error.message +
+                    "</div>";
+
+                return;
+            }
+
+
+            if (!data || data.length === 0) {
+
+                projectsList.innerHTML =
+                    '<div class="loading">' +
+                    "No projects found." +
+                    "</div>";
+
+                return;
+            }
+
+
+            renderProjects(data);
+        }
+
+
+        /* =====================================================
+           RENDER PROJECTS
+        ===================================================== */
+
+        function renderProjects(projects) {
+
+            projectsList.innerHTML = "";
+
+
+            projects.forEach(function(project) {
+
+                const card =
+                    document.createElement("div");
+
+                card.className =
+                    "project-card";
+
+
+                const number =
+                    project.number || "";
+
+
+                const title =
+                    project.title || "Untitled";
+
+
+                const description =
+                    project.description || "";
+
+
+                const featured =
+                    project.featured
+                        ? "Featured"
+                        : "Standard";
+
+
+                card.innerHTML = `
+
+                    <div class="project-number">
+                        ${escapeHTML(number)}
+                    </div>
+
+                    <h3>
+                        ${escapeHTML(title)}
+                    </h3>
+
+                    <p>
+                        ${escapeHTML(description)}
+                    </p>
+
+                    <div class="project-meta">
+                        ${escapeHTML(featured)}
+                    </div>
+
+                    <button
+                        type="button"
+                        class="edit-button"
+                    >
+                        EDIT PROJECT
+                    </button>
+
+                `;
+
+
+                const editButton =
+                    card.querySelector(".edit-button");
+
+
+                editButton.addEventListener(
+                    "click",
+                    function() {
+
+                        openEditor(project);
+
+                    }
+                );
+
+
+                projectsList.appendChild(card);
+
+            });
+        }
+
+
+        /* =====================================================
+           ESCAPE HTML
+        ===================================================== */
+
+        function escapeHTML(value) {
+
+            if (value === null ||
+                value === undefined) {
+
+                return "";
+            }
+
+
+            return String(value)
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+
+        /* =====================================================
+           OPEN EDITOR
+        ===================================================== */
+
+        function openEditor(project) {
+
+            selectedProject = project;
+
+            creatingProject = false;
+
+
+            editorTitle.textContent =
+                "Edit Project";
+
+
+            projectNumber.value =
+                project.number || "";
+
+
+            projectTitle.value =
+                project.title || "";
+
+
+            projectImage.value =
+                project.image || "";
+
+
+            projectDescription.value =
+                project.description || "";
+
+
+            projectTags.value =
+                project.tags || "";
+
+
+            projectLink.value =
+                project.link || "";
+
+
+            projectButtonText.value =
+                project.button_text || "";
+
+
+            projectFeatured.checked =
+                project.featured === true;
+
+
+            showEditorMessage("");
+
+
+            editor.style.display =
+                "block";
+
+
+            editor.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+
+        /* =====================================================
+           ADD PROJECT
+        ===================================================== */
+
+        addProjectButton.addEventListener(
+            "click",
+            function() {
+
+                creatingProject = true;
+
+                selectedProject = null;
+
+
+                editorTitle.textContent =
+                    "Add Project";
+
+
+                projectForm.reset();
+
+
+                projectFeatured.checked =
+                    false;
+
+
+                showEditorMessage("");
+
+
+                editor.style.display =
+                    "block";
+
+
+                editor.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           SAVE PROJECT
+        ===================================================== */
+
+        projectForm.addEventListener(
+            "submit",
+            async function(event) {
+
+                event.preventDefault();
+
+
+                saveButton.disabled = true;
+
+                saveButton.textContent =
+                    "SAVING...";
+
+                showEditorMessage("");
+
+
+                const projectData = {
+
+                    number:
+                        projectNumber.value.trim(),
+
+                    title:
+                        projectTitle.value.trim(),
+
+                    image:
+                        projectImage.value.trim(),
+
+                    description:
+                        projectDescription.value.trim(),
+
+                    tags:
+                        projectTags.value.trim(),
+
+                    link:
+                        projectLink.value.trim(),
+
+                    button_text:
+                        projectButtonText.value.trim(),
+
+                    featured:
+                        projectFeatured.checked
+
+                };
+
+
+                if (!projectData.title) {
+
+                    showEditorMessage(
+                        "The project title is required."
+                    );
+
+                    saveButton.disabled = false;
+
+                    saveButton.textContent =
+                        "SAVE";
+
+                    return;
+                }
+
+
+                try {
+
+                    if (creatingProject) {
+
+                        /* =========================
+                           CREATE
+                        ========================= */
+
+                        const {
+                            data,
+                            error
+                        } =
+                            await supabaseClient
+                                .from("projects")
+                                .insert(projectData)
+                                .select()
+                                .single();
+
+
+                        if (error) {
+
+                            console.error(
+                                "Create project error:",
+                                error
+                            );
+
+                            showEditorMessage(
+                                "Error creating project: " +
+                                error.message
+                            );
+
+                            return;
+                        }
+
+
+                        selectedProject =
+                            data;
+
+
+                        showEditorMessage(
+                            "Project created successfully.",
+                            "success"
+                        );
+
+
+                        creatingProject = false;
+
+
+                        editorTitle.textContent =
+                            "Edit Project";
+
+
+                        await loadProjects();
+
+                    } else {
+
+                        /* =========================
+                           UPDATE
+                        ========================= */
+
+                        if (!selectedProject) {
+
+                            showEditorMessage(
+                                "No project selected."
+                            );
+
+                            return;
+                        }
+
+
+                        const {
+                            data,
+                            error
+                        } =
+                            await supabaseClient
+                                .from("projects")
+                                .update(projectData)
+                                .eq(
+                                    "id",
+                                    selectedProject.id
+                                )
+                                .select()
+                                .single();
+
+
+                        if (error) {
+
+                            console.error(
+                                "Update project error:",
+                                error
+                            );
+
+                            showEditorMessage(
+                                "Error saving project: " +
+                                error.message
+                            );
+
+                            return;
+                        }
+
+
+                        selectedProject =
+                            data;
+
+
+                        showEditorMessage(
+                            "Project saved successfully.",
+                            "success"
+                        );
+
+
+                        await loadProjects();
+                    }
+
+
+                } catch (error) {
+
+                    console.error(
+                        "Save exception:",
+                        error
+                    );
+
+                    showEditorMessage(
+                        "Unexpected error while saving."
+                    );
+
+                } finally {
+
+                    saveButton.disabled = false;
+
+                    saveButton.textContent =
+                        "SAVE";
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           CANCEL
+        ===================================================== */
+
+        cancelButton.addEventListener(
+            "click",
+            function() {
+
+                editor.style.display =
+                    "none";
+
+                selectedProject = null;
+
+                creatingProject = false;
+
+                projectForm.reset();
+
+                showEditorMessage("");
+            }
+        );
+
+
+        /* =====================================================
+           LOGOUT
+        ===================================================== */
+
+        logoutButton.addEventListener(
+            "click",
+            async function() {
+
+                await supabaseClient.auth.signOut();
+
+                adminPanel.style.display =
+                    "none";
+
+                loginScreen.style.display =
+                    "flex";
+
+                loginForm.reset();
+
+                showLoginMessage("");
+
+                editor.style.display =
+                    "none";
+
+                selectedProject = null;
+
+                creatingProject = false;
+            }
+        );
+
+
+        /* =====================================================
+           AUTH STATE
+        ===================================================== */
+
+        supabaseClient.auth.onAuthStateChange(
+            function(event, session) {
+
+                if (
+                    event === "SIGNED_OUT" ||
+                    !session
+                ) {
+
+                    adminPanel.style.display =
+                        "none";
+
+                    loginScreen.style.display =
+                        "flex";
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           START
+        ===================================================== */
+
+        checkSession();
+
+    </script>
+
+</body>
+</html>
 
