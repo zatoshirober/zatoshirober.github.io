@@ -35,7 +35,7 @@ const projects = [
 
         number: "02",
 
-        title: "Upcoming Project",
+     title: "PRUEBA CMS",
 
         image: "portada1.png",
 
