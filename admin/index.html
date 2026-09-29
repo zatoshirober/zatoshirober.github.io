@@ -1278,12 +1278,12 @@
 
 
         /* =========================
-           TEMPORARY SAVE
+           SAVE TO SUPABASE
         ========================= */
 
         saveButton.addEventListener(
             "click",
-            () => {
+            async () => {
 
                 if (!selectedProject) {
 
@@ -1292,37 +1292,138 @@
                 }
 
 
-                selectedProject.title =
-                    titleInput.value;
+                saveButton.disabled = true;
+
+                saveButton.textContent =
+                    "SAVING...";
 
 
-                selectedProject.image =
-                    imageInput.value;
+                const updatedTitle =
+                    titleInput.value.trim();
 
 
-                selectedProject.description =
-                    descriptionInput.value;
+                const updatedImage =
+                    imageInput.value.trim();
 
 
-                selectedProject.tags =
+                const updatedDescription =
+                    descriptionInput.value.trim();
+
+
+                const updatedTags =
                     tagsInput.value
                         .split(",")
                         .map(tag => tag.trim())
                         .filter(
                             tag =>
                                 tag !== ""
+                        )
+                        .join(", ");
+
+
+                const updatedLink =
+                    linkInput.value.trim();
+
+
+                const updatedButtonText =
+                    buttonTextInput.value.trim();
+
+
+                const { error } =
+                    await supabaseClient
+
+                        .from("projects")
+
+                        .update({
+
+                            title:
+                                updatedTitle,
+
+                            image:
+                                updatedImage,
+
+                            description:
+                                updatedDescription,
+
+                            tags:
+                                updatedTags,
+
+                            link:
+                                updatedLink,
+
+                            button_text:
+                                updatedButtonText
+
+                        })
+
+                        .eq(
+                            "id",
+                            selectedProject.id
                         );
 
 
+                if (error) {
+
+                    console.error(
+                        "Error saving project:",
+                        error
+                    );
+
+
+                    alert(
+                        "Error saving changes. Check the console."
+                    );
+
+
+                    saveButton.disabled = false;
+
+                    saveButton.textContent =
+                        "SAVE";
+
+                    return;
+
+                }
+
+
+                selectedProject.title =
+                    updatedTitle;
+
+
+                selectedProject.image =
+                    updatedImage;
+
+
+                selectedProject.description =
+                    updatedDescription;
+
+
+                selectedProject.tags =
+                    updatedTags
+                        ? updatedTags
+                            .split(",")
+                            .map(
+                                tag =>
+                                    tag.trim()
+                            )
+                            .filter(
+                                tag =>
+                                    tag !== ""
+                            )
+                        : [];
+
+
                 selectedProject.link =
-                    linkInput.value;
+                    updatedLink;
 
 
                 selectedProject.buttonText =
-                    buttonTextInput.value;
+                    updatedButtonText;
 
 
                 renderProjects();
+
+
+                selectedProject = null;
 
 
                 editor.classList.remove(
@@ -1330,8 +1431,14 @@
                 );
 
 
+                saveButton.disabled = false;
+
+                saveButton.textContent =
+                    "SAVE";
+
+
                 alert(
-                    "Changes updated temporarily."
+                    "Changes saved successfully."
                 );
 
             }
