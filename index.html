@@ -196,7 +196,14 @@
 
             transform: translate(-50%, -50%);
 
-            width: min(120px, 30vw);
+            /*
+                Responsive:
+                mínimo: 65px
+                adaptable: 18vw
+                máximo: 120px
+            */
+
+            width: clamp(65px, 18vw, 120px);
 
             height: auto;
 
@@ -554,11 +561,12 @@
             }
 
 
-            .hero-logo {
-                width: 75vw;
-
-                max-width: 400px;
-            }
+            /*
+                El logo ya es responsive
+                mediante clamp().
+                No necesitamos cambiar
+                su tamaño aquí.
+            */
 
 
             section {
