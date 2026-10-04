@@ -5,9 +5,15 @@
 <head>
 
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Zatoshi Rober | Indie Game Developer</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Zatoshi Rober | Indie Game Developer
+    </title>
 
     <meta
         name="description"
@@ -29,25 +35,35 @@
         ========================= */
 
         * {
+
             margin: 0;
             padding: 0;
+
             box-sizing: border-box;
+
         }
 
 
         html {
+
             scroll-behavior: smooth;
+
         }
 
 
         body {
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
             background: #2A2A2A;
 
             color: #FFFFFF;
 
             line-height: 1.6;
+
         }
 
 
@@ -56,6 +72,7 @@
         ========================= */
 
         header {
+
             position: fixed;
 
             top: 0;
@@ -67,40 +84,58 @@
 
             display: flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
             align-items: center;
 
             background:
-                rgba(42, 42, 42, 0.90);
+                rgba(
+                    42,
+                    42,
+                    42,
+                    0.90
+                );
 
-            backdrop-filter: blur(10px);
+            backdrop-filter:
+                blur(10px);
 
             z-index: 1000;
 
             border-bottom:
                 1px solid
-                rgba(255,255,255,0.08);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
         }
 
 
         .logo img {
+
             height: 45px;
 
             width: auto;
 
             display: block;
+
         }
 
 
         nav {
+
             display: flex;
 
             gap: 30px;
+
         }
 
 
         nav a {
+
             color: #49DD4B;
 
             text-decoration: none;
@@ -110,10 +145,12 @@
             transition: 0.3s;
 
             position: relative;
+
         }
 
 
         nav a::after {
+
             content: "";
 
             position: absolute;
@@ -130,11 +167,14 @@
 
             transition:
                 width 0.3s ease;
+
         }
 
 
         nav a:hover::after {
+
             width: 100%;
+
         }
 
 
@@ -143,19 +183,22 @@
         ========================= */
 
         .hero {
+
             padding-top: 110px;
 
             padding-bottom: 70px;
 
             text-align: center;
+
         }
 
 
         /* =========================
-           VIDEO BANNER
+           VIDEO
         ========================= */
 
         .hero-video-container {
+
             width: 100%;
 
             height: 420px;
@@ -168,15 +211,27 @@
 
             border-top:
                 1px solid
-                rgba(255,255,255,0.08);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
 
             border-bottom:
                 1px solid
-                rgba(255,255,255,0.08);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
+
         }
 
 
         .hero-video {
+
             width: 100%;
 
             height: 100%;
@@ -184,14 +239,16 @@
             object-fit: cover;
 
             display: block;
+
         }
 
 
         /* =========================
-           VIDEO DARK OVERLAY
+           VIDEO OVERLAY
         ========================= */
 
         .hero-video-overlay {
+
             position: absolute;
 
             top: 0;
@@ -203,13 +260,24 @@
             background:
                 linear-gradient(
                     to bottom,
-                    rgba(0,0,0,0.15),
-                    rgba(0,0,0,0.45)
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.15
+                    ),
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.45
+                    )
                 );
 
             pointer-events: none;
 
             z-index: 2;
+
         }
 
 
@@ -218,13 +286,17 @@
         ========================= */
 
         .hero-logo {
+
             position: absolute;
 
             top: 50%;
             left: 50%;
 
             transform:
-                translate(-50%, -50%);
+                translate(
+                    -50%,
+                    -50%
+                );
 
             width:
                 clamp(
@@ -241,8 +313,15 @@
 
             filter:
                 drop-shadow(
-                    0 8px 20px rgba(0,0,0,0.65)
+                    0 8px 20px
+                    rgba(
+                        0,
+                        0,
+                        0,
+                        0.65
+                    )
                 );
+
         }
 
 
@@ -251,30 +330,38 @@
         ========================= */
 
         .hero-content {
+
             max-width: 900px;
 
-            margin: 45px auto 0;
+            margin:
+                45px auto 0;
 
-            padding: 0 20px;
+            padding:
+                0 20px;
+
         }
 
 
         .hero p.small-title {
+
             font-size: 0.9rem;
 
             letter-spacing: 4px;
 
-            text-transform: uppercase;
+            text-transform:
+                uppercase;
 
             color: #49DD4B;
 
             opacity: 0.9;
 
             margin-bottom: 20px;
+
         }
 
 
         .hero h2 {
+
             font-size:
                 clamp(
                     1.2rem,
@@ -287,16 +374,19 @@
             opacity: 0.75;
 
             margin-bottom: 30px;
+
         }
 
 
         .hero-description {
+
             max-width: 650px;
 
             margin:
                 0 auto 40px;
 
             opacity: 0.65;
+
         }
 
 
@@ -305,9 +395,11 @@
         ========================= */
 
         .button {
+
             display: inline-block;
 
-            padding: 14px 28px;
+            padding:
+                14px 28px;
 
             border:
                 1px solid
@@ -322,16 +414,19 @@
             font-weight: bold;
 
             letter-spacing: 1px;
+
         }
 
 
         .button:hover {
+
             background: #49DD4B;
 
             color: #2A2A2A;
 
             transform:
                 translateY(-2px);
+
         }
 
 
@@ -340,20 +435,26 @@
         ========================= */
 
         section {
-            padding: 100px 8%;
+
+            padding:
+                100px 8%;
+
         }
 
 
         .section-title {
+
             font-size: 2.5rem;
 
             margin-bottom: 50px;
 
             position: relative;
+
         }
 
 
         .section-title::after {
+
             content: "";
 
             display: block;
@@ -365,6 +466,7 @@
             background: #49DD4B;
 
             margin-top: 12px;
+
         }
 
 
@@ -373,17 +475,24 @@
         ========================= */
 
         .projects {
+
             display: grid;
 
             grid-template-columns:
                 repeat(
-                    auto-fit,
-                    minmax(280px, 1fr)
+                    3,
+                    minmax(
+                        0,
+                        1fr
+                    )
                 );
 
-            gap: 30px;
+            gap:
+                40px 30px;
 
-            align-items: stretch;
+            align-items:
+                start;
+
         }
 
 
@@ -392,128 +501,130 @@
         ========================= */
 
         .project-card {
-            border:
-                1px solid
-                rgba(255,255,255,0.1);
 
-            padding: 30px;
+            background: transparent;
 
-            background: #2A2A2A;
+            border: none;
 
-            transition: 0.3s;
+            padding: 0;
 
-            display: flex;
+            margin: 0;
 
-            flex-direction: column;
+            display: block;
 
-            height: 100%;
+            height: auto;
+
         }
 
 
-        .project-image {
+        /* =========================
+           PROJECT IMAGE LINK
+        ========================= */
+
+        .project-cover-link {
+
+            display: block;
+
             width: 100%;
 
-            aspect-ratio: 16 / 9;
+            overflow: hidden;
+
+            text-decoration: none;
+
+            background: #111;
+
+        }
+
+
+        /* =========================
+           PROJECT IMAGE
+        ========================= */
+
+        .project-image {
+
+            width: 100%;
+
+            aspect-ratio:
+                16 / 9;
 
             object-fit: cover;
 
             display: block;
 
-            margin-bottom: 25px;
+            margin: 0;
 
-            border-radius: 6px;
+            border: none;
+
+            border-radius: 0;
 
             transition:
-                transform 0.4s ease;
-        }
+                transform
+                0.4s ease;
 
-
-        .project-card:hover {
-            transform:
-                translateY(-5px);
-
-            border-color:
-                rgba(255,255,255,0.35);
-        }
-
-
-        .project-card:hover .project-image {
-            transform:
-                scale(1.03);
-        }
-
-
-        .featured-project {
-            border-color:
-                rgba(
-                    73,
-                    221,
-                    75,
-                    0.35
-                );
-        }
-
-
-        .project-card .project-number {
-            opacity: 0.4;
-
-            font-size: 0.85rem;
-
-            margin-bottom: 20px;
-        }
-
-
-        .project-card h3 {
-            font-size: 1.5rem;
-
-            margin-bottom: 15px;
-        }
-
-
-        .project-card p {
-            opacity: 0.6;
-
-            margin-bottom: 25px;
-
-            flex-grow: 1;
-        }
-
-
-        .project-tags {
-            display: flex;
-
-            flex-wrap: wrap;
-
-            gap: 8px;
-
-            margin-bottom: 25px;
-        }
-
-
-        .project-tags span {
-            border:
-                1px solid
-                rgba(
-                    73,
-                    221,
-                    75,
-                    0.35
-                );
-
-            color: #49DD4B;
-
-            padding: 5px 10px;
-
-            font-size: 0.75rem;
         }
 
 
         /* =========================
-           PROJECT BUTTON
+           IMAGE HOVER
         ========================= */
 
-        .project-card .button {
-            align-self: flex-start;
+        .project-cover-link:hover
+        .project-image {
+
+            transform:
+                scale(1.04);
+
+        }
+
+
+        /* =========================
+           PROJECT TITLE
+        ========================= */
+
+        .project-title {
+
+            margin-top: 14px;
+
+            margin-bottom: 0;
+
+            font-size:
+                1.15rem;
+
+            font-weight:
+                normal;
+
+            line-height: 1.3;
+
+        }
+
+
+        .project-title a {
+
+            color: #FFFFFF;
+
+            text-decoration: none;
+
+            transition:
+                color 0.3s ease;
+
+        }
+
+
+        .project-title a:hover {
+
+            color: #49DD4B;
+
+        }
+
+
+        /* =========================
+           FEATURED PROJECT
+        ========================= */
+
+        .featured-project {
+
+            border: none;
+
         }
 
 
@@ -522,6 +633,7 @@
         ========================= */
 
         .about {
+
             max-width: 800px;
 
             margin: 0 auto;
@@ -535,19 +647,23 @@
             text-align: center;
 
             gap: 20px;
+
         }
 
 
         .about p {
+
             font-size: 1.1rem;
 
             opacity: 0.7;
 
             margin-bottom: 20px;
+
         }
 
 
         .skills {
+
             display: flex;
 
             flex-wrap: wrap;
@@ -557,17 +673,27 @@
             gap: 12px;
 
             margin-top: 10px;
+
         }
 
 
         .skill {
+
             border:
                 1px solid
-                rgba(255,255,255,0.2);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.2
+                );
 
-            padding: 8px 15px;
+            padding:
+                8px 15px;
 
-            font-size: 0.85rem;
+            font-size:
+                0.85rem;
+
         }
 
 
@@ -576,14 +702,18 @@
         ========================= */
 
         .contact {
+
             text-align: center;
+
         }
 
 
         .contact p {
+
             opacity: 0.6;
 
             margin-bottom: 30px;
+
         }
 
 
@@ -592,17 +722,50 @@
         ========================= */
 
         footer {
-            padding: 40px 8%;
+
+            padding:
+                40px 8%;
 
             text-align: center;
 
             border-top:
                 1px solid
-                rgba(255,255,255,0.08);
+                rgba(
+                    255,
+                    255,
+                    255,
+                    0.08
+                );
 
             opacity: 0.5;
 
-            font-size: 0.85rem;
+            font-size:
+                0.85rem;
+
+        }
+
+
+        /* =========================
+           TABLET
+        ========================= */
+
+        @media (
+            max-width: 900px
+        ) {
+
+            .projects {
+
+                grid-template-columns:
+                    repeat(
+                        2,
+                        minmax(
+                            0,
+                            1fr
+                        )
+                    );
+
+            }
+
         }
 
 
@@ -610,42 +773,76 @@
            MOBILE
         ========================= */
 
-        @media (max-width: 700px) {
+        @media (
+            max-width: 700px
+        ) {
 
             header {
-                padding: 18px 5%;
+
+                padding:
+                    18px 5%;
+
             }
 
 
             nav {
+
                 gap: 15px;
+
             }
 
 
             nav a {
-                font-size: 0.8rem;
+
+                font-size:
+                    0.8rem;
+
             }
 
 
             .hero {
-                padding-top: 90px;
 
-                padding-bottom: 50px;
+                padding-top:
+                    90px;
+
+                padding-bottom:
+                    50px;
+
             }
 
 
             .hero-video-container {
-                height: 240px;
+
+                height:
+                    240px;
+
             }
 
 
             section {
-                padding: 80px 5%;
+
+                padding:
+                    80px 5%;
+
             }
 
 
-            .project-card {
-                height: auto;
+            .projects {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    35px;
+
+            }
+
+
+            .project-title {
+
+                font-size:
+                    1.05rem;
+
             }
 
         }
@@ -697,7 +894,6 @@
     </header>
 
 
-
     <!-- =========================
          MAIN
     ========================= -->
@@ -715,14 +911,11 @@
         >
 
 
-            <!-- =========================
-                 VIDEO + LOGO
-            ========================= -->
+            <!-- VIDEO -->
 
             <div
                 class="hero-video-container"
             >
-
 
                 <video
                     class="hero-video"
@@ -741,14 +934,10 @@
                 </video>
 
 
-                <!-- DARK OVERLAY -->
-
                 <div
                     class="hero-video-overlay"
                 ></div>
 
-
-                <!-- LOGO OVER VIDEO -->
 
                 <img
                     src="logo.png"
@@ -756,39 +945,34 @@
                     class="hero-logo"
                 >
 
-
             </div>
 
 
+            <!-- PRESENTATION -->
 
-            <!-- =========================
-                 PRESENTATION
-            ========================= -->
+            <div
+                class="hero-content"
+            >
 
-            <div class="hero-content">
-
-
-                <p class="small-title">
-
+                <p
+                    class="small-title"
+                >
                     Indie Game Developer
-
                 </p>
 
 
                 <h2>
-
                     Creating worlds with Unity.
-
                 </h2>
 
 
-                <p class="hero-description">
-
+                <p
+                    class="hero-description"
+                >
                     I’m an indie game developer at the beginning
                     of my journey, creating games, worlds and
                     interactive experiences through programming,
                     experimentation and game design.
-
                 </p>
 
 
@@ -796,30 +980,26 @@
                     href="#projects"
                     class="button"
                 >
-
                     VIEW MY PROJECTS
-
                 </a>
-
 
             </div>
 
-
         </section>
-
 
 
         <!-- =========================
              PROJECTS
         ========================= -->
 
-        <section id="projects">
+        <section
+            id="projects"
+        >
 
-
-            <h2 class="section-title">
-
+            <h2
+                class="section-title"
+            >
                 Projects
-
             </h2>
 
 
@@ -830,108 +1010,86 @@
 
             </div>
 
-
         </section>
-
 
 
         <!-- =========================
              ABOUT
         ========================= -->
 
-        <section id="about">
+        <section
+            id="about"
+        >
 
-
-            <h2 class="section-title">
-
+            <h2
+                class="section-title"
+            >
                 About Me
-
             </h2>
 
 
-            <div class="about">
+            <div
+                class="about"
+            >
 
-
-                <div class="about-text">
-
+                <div
+                    class="about-text"
+                >
 
                     <p>
-
                         I’m an indie game developer focused on
                         creating interactive experiences with
                         Unity and C#.
-
                     </p>
 
 
                     <p>
-
                         I enjoy designing gameplay systems,
                         experimenting with mechanics and building
                         worlds that combine gameplay, exploration
                         and storytelling.
-
                     </p>
 
 
                     <p>
-
                         Robert Was Alone is the beginning of my
                         journey as a game developer, and this
                         portfolio is where I share the projects,
                         experiments and ideas I bring to life.
-
                     </p>
 
-
                 </div>
 
 
-                <div class="skills">
-
+                <div
+                    class="skills"
+                >
 
                     <span class="skill">
-
                         Unity
-
                     </span>
 
-
                     <span class="skill">
-
                         C#
-
                     </span>
 
-
                     <span class="skill">
-
                         Game Design
-
                     </span>
 
-
                     <span class="skill">
-
                         Gameplay Programming
-
                     </span>
-
 
                     <span class="skill">
-
                         World Building
-
                     </span>
-
 
                 </div>
-
 
             </div>
 
         </section>
-
 
 
         <!-- =========================
@@ -943,19 +1101,16 @@
             class="contact"
         >
 
-
-            <h2 class="section-title">
-
+            <h2
+                class="section-title"
+            >
                 Contact
-
             </h2>
 
 
             <p>
-
                 Interested in my projects or want to follow
                 my journey?
-
             </p>
 
 
@@ -965,17 +1120,12 @@
                 target="_blank"
                 rel="noopener noreferrer"
             >
-
                 VIEW GAME
-
             </a>
-
 
         </section>
 
-
     </main>
-
 
 
     <!-- =========================
@@ -984,10 +1134,10 @@
 
     <footer>
 
-        © 2026 Zatoshi Rober — Indie Game Developer
+        © 2026 Zatoshi Rober —
+        Indie Game Developer
 
     </footer>
-
 
 
     <!-- =========================
@@ -1015,7 +1165,6 @@
             );
 
 
-
         /* =========================
            PROJECT CONTAINER
         ========================= */
@@ -1026,7 +1175,6 @@
             );
 
 
-
         /* =========================
            LOAD PROJECTS
         ========================= */
@@ -1034,27 +1182,35 @@
         async function loadProjects() {
 
             projectsContainer.innerHTML = `
-                <p style="
-                    opacity: 0.6;
-                    text-align: center;
-                    width: 100%;
-                ">
+
+                <p
+                    style="
+                        opacity: 0.6;
+                        text-align: center;
+                        width: 100%;
+                    "
+                >
                     Loading projects...
                 </p>
+
             `;
 
 
-            const { data, error } =
+            const {
+                data,
+                error
+            } =
                 await supabaseClient
-
                     .from("projects")
-
                     .select("*")
-
                     .order("id", {
                         ascending: true
                     });
 
+
+            /* =========================
+               ERROR
+            ========================= */
 
             if (error) {
 
@@ -1065,13 +1221,17 @@
 
 
                 projectsContainer.innerHTML = `
-                    <p style="
-                        opacity: 0.6;
-                        text-align: center;
-                        width: 100%;
-                    ">
+
+                    <p
+                        style="
+                            opacity: 0.6;
+                            text-align: center;
+                            width: 100%;
+                        "
+                    >
                         Unable to load projects.
                     </p>
+
                 `;
 
                 return;
@@ -1079,129 +1239,209 @@
             }
 
 
-            if (!data || data.length === 0) {
+            /* =========================
+               NO PROJECTS
+            ========================= */
+
+            if (
+                !data ||
+                data.length === 0
+            ) {
 
                 projectsContainer.innerHTML = `
-                    <p style="
-                        opacity: 0.6;
-                        text-align: center;
-                        width: 100%;
-                    ">
+
+                    <p
+                        style="
+                            opacity: 0.6;
+                            text-align: center;
+                            width: 100%;
+                        "
+                    >
                         No projects available.
                     </p>
+
                 `;
 
                 return;
 
             }
 
+
+            /* =========================
+               CLEAR CONTAINER
+            ========================= */
 
             projectsContainer.innerHTML = "";
 
 
-            data.forEach(project => {
+            /* =========================
+               CREATE PROJECT CARDS
+            ========================= */
 
-                const article =
-                    document.createElement(
-                        "article"
-                    );
+            data.forEach(
+                project => {
+
+                    const article =
+                        document.createElement(
+                            "article"
+                        );
 
 
-                article.className =
-                    "project-card";
+                    article.className =
+                        "project-card";
 
 
-                if (project.featured) {
+                    if (
+                        project.featured
+                    ) {
 
-                    article.classList.add(
-                        "featured-project"
+                        article.classList.add(
+                            "featured-project"
+                        );
+
+                    }
+
+
+                    /* =========================
+                       PROJECT LINK
+                    ========================= */
+
+                    const projectLink =
+                        project.link &&
+                        project.link.trim() !== ""
+                            ? project.link.trim()
+                            : "#";
+
+
+                    /* =========================
+                       TARGET
+                    ========================= */
+
+                    const isExternalLink =
+                        projectLink.startsWith(
+                            "http://"
+                        ) ||
+                        projectLink.startsWith(
+                            "https://"
+                        );
+
+
+                    const targetAttributes =
+                        isExternalLink
+                            ? 'target="_blank" rel="noopener noreferrer"'
+                            : "";
+
+
+                    /* =========================
+                       PROJECT CARD
+                    ========================= */
+
+                    article.innerHTML = `
+
+                        <a
+                            href="${escapeHTML(projectLink)}"
+                            class="project-cover-link"
+                            ${targetAttributes}
+                            aria-label="Open ${escapeHTML(
+                                project.title ||
+                                "project"
+                            )}"
+                        >
+
+                            <img
+                                src="${escapeHTML(
+                                    project.image ||
+                                    ""
+                                )}"
+                                alt="${escapeHTML(
+                                    project.title ||
+                                    "Project"
+                                )}"
+                                class="project-image"
+                            >
+
+                        </a>
+
+
+                        <h3
+                            class="project-title"
+                        >
+
+                            <a
+                                href="${escapeHTML(
+                                    projectLink
+                                )}"
+                                ${targetAttributes}
+                            >
+
+                                ${escapeHTML(
+                                    project.title ||
+                                    "Untitled Project"
+                                )}
+
+                            </a>
+
+                        </h3>
+
+                    `;
+
+
+                    projectsContainer.appendChild(
+                        article
                     );
 
                 }
-
-
-                const tags =
-                    project.tags
-                        ? project.tags
-                            .split(",")
-                            .map(
-                                tag =>
-                                    tag.trim()
-                            )
-                            .filter(
-                                tag =>
-                                    tag !== ""
-                            )
-                        : [];
-
-
-                article.innerHTML = `
-
-                    <div
-                        class="project-number"
-                    >
-                        ${project.number}
-                    </div>
-
-
-                    <img
-                        src="${project.image}"
-                        alt="${project.title}"
-                        class="project-image"
-                    >
-
-
-                    <h3>
-                        ${project.title}
-                    </h3>
-
-
-                    <p>
-                        ${project.description}
-                    </p>
-
-
-                    <div
-                        class="project-tags"
-                    >
-
-                        ${tags.map(tag => `
-
-                            <span>
-                                ${tag}
-                            </span>
-
-                        `).join("")}
-
-                    </div>
-
-
-                    <a
-                        href="${project.link}"
-                        class="button"
-                        ${
-                            project.link &&
-                            project.link.startsWith("http")
-                                ? 'target="_blank" rel="noopener noreferrer"'
-                                : ""
-                        }
-                    >
-
-                        ${project.button_text}
-
-                    </a>
-
-                `;
-
-
-                projectsContainer.appendChild(
-                    article
-                );
-
-            });
+            );
 
         }
 
+
+        /* =========================
+           ESCAPE HTML
+        ========================= */
+
+        function escapeHTML(
+            value
+        ) {
+
+            if (
+                value === null ||
+                value === undefined
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(value)
+
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
 
 
         /* =========================
